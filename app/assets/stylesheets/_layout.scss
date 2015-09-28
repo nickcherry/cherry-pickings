@@ -1,0 +1,21 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin: 0 0 $footer-height;
+}
+
+#wrapper {
+  margin-top: -20px;
+  position: relative;
+}
+
+footer {
+  bottom: 0;
+  height: $footer-height;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}

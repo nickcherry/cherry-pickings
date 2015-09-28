@@ -1,0 +1,73 @@
+header {
+
+  height: $header-height;
+  overflow: hidden;
+  position: relative;
+  @include depth(header);
+
+  .tagline {
+    display: none;
+    line-height: 1;
+    margin: 20px 0 0 $page-padding-horizontal;
+    position: absolute;
+  }
+
+  .tagline-short {
+    display: block;
+    font-size: .65em;
+  }
+
+  .cherry {
+    background: $mexican-red;
+    background-image: linear-gradient(-45deg, rgba($brick-red, .3) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(white, .2);
+    box-shadow: inset -25px -25px 40px rgba(black, .2);
+    border-radius: 50%;
+    color: white;
+    display: inline-block;
+    height: $header-cherry-diameter;
+    padding-bottom: 0;
+    position: absolute;
+    right: 10px;
+    text-align: center;
+    top: 10px;
+    transform: rotate(24deg);
+    width: $header-cherry-diameter;
+  }
+
+  h1 {
+    display: inline-block;
+    font-family: $display-font-family;
+    font-size: 24px;
+    line-height: 1;
+    margin: 0;
+    padding-top: 36px;
+    user-select: none;
+  }
+
+  @include respond-to(sm) {
+    .tagline-short {
+      font-size: .75em;
+      margin-top: 18px;
+    }
+  }
+  @include respond-to(md) {
+    height: $header-height-md;
+    .tagline-short { display: none; }
+    .tagline-full {
+      display: block;
+      font-size: 1em;
+      margin: 38px 0 0 $page-padding-horizontal-md;
+    }
+    .cherry {
+      height: $header-cherry-diameter-md;
+      right: 20px;
+      top: 20px;
+      width: $header-cherry-diameter-md;
+    }
+    h1 {
+      font-size: 42px;
+      padding-top: 54px;
+    }
+  }
+}

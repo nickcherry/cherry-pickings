@@ -1,0 +1,23 @@
+<section class="main-view"
+  ng-class="{ initialized: initialized,
+              errors: errors.length,
+              empty: posts.length == 0 }">
+
+  <loader class="main-view-loader"></loader>
+
+  <div class="main-view-empty">
+    Coming soon!
+  </div>
+
+  <main-view-errors
+    errors="errors"
+    retry="init()">
+  </main-view-errors>
+
+  <div class="main-view-content">
+    <posts
+      posts="posts">
+    </posts>
+  </div>
+
+</section>

@@ -1,0 +1,54 @@
+@mixin respond-to($name) {
+  @if map-has-key($breakpoints, $name) {
+    @media #{ map-get($breakpoints, $name) } {
+      @content;
+    }
+  }
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin depth($name) {
+  @if map-has-key($depths, $name) {
+    z-index: map-get($depths, $name);
+  }
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$depths}`. "
+        + "Please make sure it is defined in `$depths` map.";
+  }
+}
+
+@mixin fade-transitions($duration, $ease, $delay, $transitions: null) {
+  @if $transitions { $transitions: ", #{ $transitions }"; }
+  transition: visibility 0s $ease ($duration + $delay),
+              opacity $duration $ease $delay
+              #{ $transitions };
+}
+
+@mixin faded-out($opacity: 0) {
+  opacity: $opacity;
+  visibility: hidden;
+}
+
+@mixin faded-in($opacity: 1) {
+  opacity: $opacity;
+  transition-delay: 0s;
+  visibility: visible;
+}
+
+@mixin zero-edges {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+@mixin clearfix {
+  :after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

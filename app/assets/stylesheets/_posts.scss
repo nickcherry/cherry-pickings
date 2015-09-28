@@ -1,0 +1,158 @@
+.posts {
+  margin-top: -145px;
+  overflow: hidden;
+  padding-top: 140px;
+  .post {
+    margin-bottom: 140px;
+  }
+}
+
+.post {
+  margin-bottom: 140px;
+  padding-top: 18px;
+  position: relative;
+
+  .heading {
+    border-bottom: 1px dotted rgba($default-color, .8);
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .heading-inner-wrapper {
+    display: table-row;
+    line-height: 1;
+  }
+
+  .post-title, .post-published-at {
+    display: table-cell;
+    padding-bottom: 2px;
+    vertical-align: text-bottom;
+  }
+
+  .post-title {
+    margin: 0;
+    width: 100%;
+    a {
+      border-bottom: none;
+      color: $default-color;
+      padding-bottom: 0;
+    }
+  }
+
+  .post-published-at {
+    display: none;
+  }
+
+  @include respond-to(sm) {
+    .post-title {
+      width: 70%;
+    }
+    .post-published-at {
+      display: table-cell;
+      font-size: .75em;
+      text-align: right;
+      width: 30%;
+    }
+  }
+
+  > .post-content {
+    backface-visibility: hidden;
+    @include depth(post-content);
+    padding: 0 $page-padding-horizontal;
+    position: relative;
+    transform: translateZ(1000px); /* Safari bug fix http://stackoverflow.com/questions/18146511/bug-in-css3-rotatey-transition-on-safari */
+    @include respond-to(md) {
+      padding: 0 $page-padding-horizontal-md;
+    }
+  }
+
+  .post-tags {
+    font-size: .75em;
+    margin-top: 2em;
+  }
+
+  .post-tag {
+    display: inline-block;
+    font-weight: $medium-font-weight;
+    margin-right: .5em;
+  }
+
+  /***************************************************/
+  /* General slope styling */
+  /***************************************************/
+
+  .post-top-slope, .post-bottom-slope {
+    display: none;
+  }
+
+  &:nth-of-type(4n+1), &:nth-of-type(4n+3) {
+    .post-top-slope, .post-bottom-slope {
+      backface-visibility: hidden;
+      border: 1px solid transparent;
+      box-shadow: 0 0 4px 1px rgba(black, .2);
+      display: block;
+      height: 250px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+    .post-top-slope {
+      @include depth(post-top-slope);
+      top: -70px;
+    }
+
+    .post-bottom-slope {
+      bottom: -78px;
+      @include depth(post-bottom-slope);
+    }
+  }
+
+  /***************************************************/
+  /* Slope rotation */
+  /***************************************************/
+
+  &:nth-of-type(4n+1) {
+    .post-top-slope, .post-bottom-slope {
+      transform: rotate3d(1,1,0, 32deg) scaleX(1.5);
+    }
+  }
+  &:nth-of-type(4n+3) {
+    .post-top-slope, .post-bottom-slope {
+      transform: rotate3d(1,-1,0, 23deg) scaleX(1.5);
+    }
+  }
+
+  /***************************************************/
+  /* Background colors */
+  /***************************************************/
+
+  &:nth-of-type(4n+1),
+  &:nth-of-type(4n+3) {
+    color: white;
+    .heading {
+      border-bottom-color: rgba(white, .2);
+      .post-title a {
+        color: white;
+      }
+    }
+  }
+  &:nth-of-type(2n+1) {
+    .post-content, .post-top-slope, .post-bottom-slope {
+      background-color: $mine-shaft;
+    }
+  }
+}
+
+.firefox body .post {
+  /* Fixes jagged edges in FF */
+  .post-top-slope, .post-bottom-slope {
+    box-shadow: none;
+  }
+  .post-top-slope {
+    border-top: 1px solid white;
+  }
+  .post-bottom-slope {
+    border-bottom: 1px solid white;
+  }
+}

@@ -1,0 +1,43 @@
+$medium-font-weight: 500;
+$light-font-weight: 300;
+$thin-font-weight: 100;
+
+$default-font-family: MuseoSans, sans-serif;
+$display-font-family: 'Dancing Script', cursive;
+
+@font-face {
+    font-family: 'MuseoSans';
+    src: url('/fonts/museosans-100-webfont.eot');
+    src: url('/fonts/museosans-100-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/museosans-100-webfont.woff2') format('woff2'),
+         url('/fonts/museosans-100-webfont.woff') format('woff'),
+         url('/fonts/museosans-100-webfont.ttf') format('truetype'),
+         url('/fonts/museosans-100-webfont.svg#museo_sans100') format('svg');
+    font-weight: $thin-font-weight;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MuseoSans';
+    src: url('/fonts/museosans-300-webfont.eot');
+    src: url('/fonts/museosans-300-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/museosans-300-webfont.woff2') format('woff2'),
+         url('/fonts/museosans-300-webfont.woff') format('woff'),
+         url('/fonts/museosans-300-webfont.ttf') format('truetype'),
+         url('/fonts/museosans-300-webfont.svg#museo_sans300') format('svg');
+    font-weight: $light-font-weight;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'MuseoSans';
+    src: url('/fonts/museosans_500-webfont.eot');
+    src: url('/fonts/museosans_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/museosans_500-webfont.woff2') format('woff2'),
+         url('/fonts/museosans_500-webfont.woff') format('woff'),
+         url('/fonts/museosans_500-webfont.ttf') format('truetype'),
+         url('/fonts/museosans_500-webfont.svg#museo_sans500') format('svg');
+    font-weight: $medium-font-weight;
+    font-style: normal;
+}
