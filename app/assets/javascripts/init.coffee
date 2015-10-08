@@ -53,8 +53,9 @@ angular.module 'cherryPickings', [
     $state = $injector.get '$state'
     $state.go 'root.posts'
 
-.run ($rootScope, Browser, PageClass, Preload, Scroller) ->
+.run ($rootScope, Analytics, Browser, PageClass, Preload, Scroller) ->
   Scroller.toTop()
+  Analytics.init()
   Browser.init()
   PageClass.init()
   Preload.init()
