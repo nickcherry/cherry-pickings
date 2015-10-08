@@ -10,6 +10,9 @@ header {
     line-height: 1;
     margin: 20px 0 0 $page-padding-horizontal;
     position: absolute;
+    a {
+      border-bottom: none;
+    }
   }
 
   .tagline-short {
