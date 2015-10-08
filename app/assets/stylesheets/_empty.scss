@@ -1,5 +1,4 @@
 .main-view-empty {
-  background: $mine-shaft;
   border-radius: 4px;
   box-sizing: border-box;
   color: white;
@@ -12,8 +11,14 @@
   position: absolute;
   text-align: center;
   width: 80%;
+  .content {
+    position: relative;
+  }
   @include respond-to(md) {
     margin-left: -20%;
     width: 40%;
+  }
+  &, .top-slope, .bottom-slope {
+    background: $mine-shaft;
   }
 }
