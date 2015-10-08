@@ -79,7 +79,7 @@
   }
 
   /***************************************************/
-  /* General slope styling */
+  /* Slopes */
   /***************************************************/
 
   .post-top-slope, .post-bottom-slope {
@@ -87,39 +87,24 @@
   }
 
   &:nth-of-type(4n+1), &:nth-of-type(4n+3) {
-    .post-top-slope, .post-bottom-slope {
-      backface-visibility: hidden;
-      border: 1px solid transparent;
-      box-shadow: 0 0 4px 1px rgba(black, .2);
-      display: block;
-      height: 250px;
-      left: 0;
-      position: absolute;
-      width: 100%;
-    }
     .post-top-slope {
+      @extend .top-slope;
       @include depth(post-top-slope);
-      top: -70px;
     }
-
     .post-bottom-slope {
-      bottom: -78px;
+      @extend .bottom-slope;
       @include depth(post-bottom-slope);
     }
   }
 
-  /***************************************************/
-  /* Slope rotation */
-  /***************************************************/
-
   &:nth-of-type(4n+1) {
     .post-top-slope, .post-bottom-slope {
-      transform: rotate3d(1,1,0, 32deg) scaleX(1.5);
+      @extend .downward-slope;
     }
   }
   &:nth-of-type(4n+3) {
     .post-top-slope, .post-bottom-slope {
-      transform: rotate3d(1,-1,0, 23deg) scaleX(1.5);
+      @extend .upward-slope;
     }
   }
 
@@ -141,18 +126,5 @@
     .post-content, .post-top-slope, .post-bottom-slope {
       background-color: $mine-shaft;
     }
-  }
-}
-
-.firefox body .post {
-  /* Fixes jagged edges in FF */
-  .post-top-slope, .post-bottom-slope {
-    box-shadow: none;
-  }
-  .post-top-slope {
-    border-top: 1px solid white;
-  }
-  .post-bottom-slope {
-    border-bottom: 1px solid white;
   }
 }
