@@ -1,4 +1,4 @@
-angular.module('cherryPickings').directive 'postsScrollFx', ($timeout, Browser, VendorPrefix) ->
+angular.module('cherryPickings').directive 'postsScrollFx', ($timeout, Browser) ->
 
   class ScrollFxManager
 
