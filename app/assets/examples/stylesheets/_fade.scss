@@ -1,0 +1,175 @@
+.fade-example {
+
+  $pillsbury-blue: #124bb6;
+
+  $delay: .1s;
+  $duration: .5s;
+  $ease: ease-out;
+
+  .loader {
+    $diameter: 160px;
+
+    animation: three-quarters-loader 750ms infinite linear;
+    border: ($diameter / 4) solid lighten($pillsbury-blue, 12%);
+    border-right-color: transparent;
+    border-radius: $diameter / 2;
+    box-sizing: border-box;
+    display: block;
+    height: $diameter;
+    left: 50%;
+    margin-left: -$diameter / 2;
+    margin-top: -$diameter / 2;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -9999px;
+    top: 50%;
+    width: $diameter;
+  }
+
+  button {
+
+    $button-diameter: 160px;
+
+    background: $pillsbury-blue;
+    background-image: linear-gradient(to bottom, lighten($pillsbury-blue, 10%), lighten($pillsbury-blue, 5%));
+    border: none;
+    border-radius: 50%;
+    box-shadow: 1px 1px 4px rgba(black, .25), inset 0 0 8px rgba(black, .4);
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-family: $default-font-family;
+    font-size: 1.5em;
+    font-weight: $thin-font-weight;
+    height: $button-diameter;
+    left: 50%;
+    line-height: 1;
+    margin-left: -$button-diameter / 2;
+    margin-top: -$button-diameter / 2;
+    outline: none;
+    padding: 0;
+    position: absolute;
+    text-shadow: 1px 1px rgba(white, .1);
+    transition: transform .15s ease-out;
+    top: 50%;
+    user-select: none;
+    width: $button-diameter;
+    &:hover {
+      background-image: linear-gradient(to bottom, lighten($pillsbury-blue, 13%), lighten($pillsbury-blue, 8%));
+    }
+    &:active {
+      transform: scale(1.04);
+    }
+  }
+
+  .doughboy {
+
+    $doughboy-width: 200px;
+    $doughboy-height: 330px;
+
+    display: none;
+    left: 50%;
+    margin-left: -$doughboy-width / 2;
+    margin-top: -$doughboy-height / 2;
+    position: absolute;
+    top: 50%;
+    width: $doughboy-width;
+
+    img {
+      box-shadow: 0 0 12px rgba(black, .15);
+      width: $doughboy-width;
+    }
+
+    .woohoo {
+      color: lighten($pillsbury-blue, 15%);
+      font-size: 1em;
+      font-weight: $light-font-weight;
+      margin-top: .25em;
+      text-align: center;
+    }
+  }
+
+  .poked {
+    .doughboy {
+      display: block;
+    }
+    button {
+      display: none;
+    }
+  }
+
+  &#fade-1-example, &#fade-2-example {
+    #wrapper {
+      .content, .loader {
+        transition: opacity $duration $ease $delay;
+      }
+      .content {
+        opacity: 0;
+      }
+      &.initialized {
+        .loader {
+          opacity: 0;
+        }
+        .content {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &#fade-3-example {
+    #wrapper {
+      .content, .loader {
+        transition: opacity $duration $ease $delay;
+      }
+      .content {
+        visibility: hidden;
+        opacity: 0;
+      }
+      &.initialized {
+        .loader {
+          visibility: hidden;
+          opacity: 0;
+        }
+        .content {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &#fade-4-example {
+    #wrapper {
+      .loader, .content {
+        transition: visibility 0s $ease ($delay + $duration),
+                    opacity $duration $ease $delay;
+      }
+      .loader {
+        opacity: 1;
+        visibility: visible;
+      }
+      .content {
+        opacity: 0;
+        visibility: hidden;
+      }
+      &.initialized {
+        .loader {
+          opacity: 0;
+          visibility: hidden;
+        }
+        .content {
+          opacity: 1;
+          transition-delay: 0s;
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+}
+
+@keyframes three-quarters-loader {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
