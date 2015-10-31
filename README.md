@@ -24,6 +24,7 @@ To create, migrate, and seed a development database, run the following commands:
 rake db:create
 rake db:migrate
 rake db:seed
+rake posts:sync # syncs database with markdown posts found in db/posts
 ```
 
 ### Starting the Server
@@ -35,3 +36,13 @@ rails s
 ```
 
 Then visit [http://localhost:3000](http://localhost:3000) in a browser to view the app.
+
+## Deployment
+
+To deploy to Heroku, first ensure that the app is configured to use the [Ruby-Bower buildpack](https://github.com/qnyp/heroku-buildpack-ruby-bower.git), then run:
+
+```shell
+rake deploy:production
+```
+
+The rake task will push the master branch to Heroku, then automatically migrate the database and sync database posts with the markdown found in `db/posts`.

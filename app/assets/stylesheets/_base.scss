@@ -25,6 +25,10 @@ a {
   }
 }
 
+a.no-underline {
+  border-bottom: none;
+}
+
 pre.highlight {
   background: white;
   border-radius: 4px;

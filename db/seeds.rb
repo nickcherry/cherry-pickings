@@ -1,4 +1,5 @@
 if Rails.env.development?
+
   User.create!(
     name: 'Nick Cherry',
     email: 'nickcherryjiggz@gmail.com',

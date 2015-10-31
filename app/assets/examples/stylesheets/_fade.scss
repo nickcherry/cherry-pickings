@@ -141,22 +141,20 @@
 
   &#fade-4-example {
     #wrapper {
-      .loader, .content {
+      .loader {
+        opacity: 1; visibility: visible;
+        transition: visibility 0s $ease $delay,
+                    opacity $duration $ease $delay;
+      }
+      .content {
+        opacity: 0; visibility: hidden;
         transition: visibility 0s $ease ($delay + $duration),
                     opacity $duration $ease $delay;
       }
-      .loader {
-        opacity: 1;
-        visibility: visible;
-      }
-      .content {
-        opacity: 0;
-        visibility: hidden;
-      }
       &.initialized {
         .loader {
-          opacity: 0;
-          visibility: hidden;
+          opacity: 0; visibility: hidden;
+          transition-delay: ($delay + $duration), $delay;
         }
         .content {
           opacity: 1;
