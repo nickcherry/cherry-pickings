@@ -12,7 +12,6 @@ class Post < ActiveRecord::Base
   scope :published, -> { where(published: true) }
   scope :recent, -> { order(published_at: :desc) }
 
-
 protected
 
   def generate_body_markdown
