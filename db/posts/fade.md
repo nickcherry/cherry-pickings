@@ -3,6 +3,7 @@ internal_id: fade
 title: The Perfect Fade
 tags: [css, transitions]
 published: true
+image: /images/examples/fade/4.gif
 ---
 
 While often subtle, opacity transitions are one of the most useful ways to gracefully add/remove elements to a view and to call out important changes in an interface. But if you rely on this technique as often as I do, you've probably come across a problem with hidden components getting in the way of interactive elements. Consider a situation where you have a loader, positioned in the center of the screen, which you want to fade out as the underlying content fades in. Something like this:

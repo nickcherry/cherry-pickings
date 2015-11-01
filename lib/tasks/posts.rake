@@ -21,6 +21,7 @@ namespace :posts do
       title = yaml[:title]
       tags = yaml[:tags] || []
       published = yaml[:published]
+      image = yaml[:image]
 
       body_markdown = File.read(filepath).gsub(/---(.|\n)*---/, '').strip
 
@@ -31,6 +32,8 @@ namespace :posts do
       post.title = title
       puts "...tags: #{ tags.join(', ') }"
       post.tags = tags.map {|tag_name| Tag.find_or_create_by(name: tag_name) }
+      puts "...image: #{ image }"
+      post.image = image
       puts "...published: #{ published }"
       post.published = published
       puts "...body_markdown: #{ body_markdown }"

@@ -11,7 +11,7 @@ module Api
 
     def feed
       @posts = Post.published.recent.limit(200)
-      render formats: [:xml], handlers: :builder, layout: false
+      render formats: [:atom], handlers: :builder, layout: false
     end
 
   end
