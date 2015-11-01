@@ -1,51 +1,84 @@
 .fade-example {
 
-  $pillsbury-blue: #124bb6;
+  $blue: #27A5CE;
 
   $delay: .1s;
   $duration: .5s;
   $ease: ease-out;
 
-  .loader {
-    $diameter: 160px;
+  $button-radius: 50px;
+  $button-border-thickness: 3px;
 
-    animation: three-quarters-loader 750ms infinite linear;
-    border: ($diameter / 4) solid lighten($pillsbury-blue, 12%);
-    border-right-color: transparent;
-    border-radius: $diameter / 2;
+  $timer-radius: $button-radius;
+  $timer-long-arm-length: $timer-radius * .88;
+  $timer-short-arm-length: $timer-radius * .56;
+  $timer-arm-width: 5px;
+  $timer-border-thickness: $button-border-thickness;
+  $timer-arm-border-radius: 5px;
+
+  .loader {
+    background: white;
+    border: $timer-border-thickness solid $blue;
+    border-radius: 50%;
     box-sizing: border-box;
-    display: block;
-    height: $diameter;
+    display: inline-block;
+    height: $timer-radius * 2;
     left: 50%;
-    margin-left: -$diameter / 2;
-    margin-top: -$diameter / 2;
+    margin-left: -$timer-radius;
+    margin-top: -$timer-radius;
     overflow: hidden;
     position: absolute;
     text-indent: -9999px;
     top: 50%;
-    width: $diameter;
+    width: $timer-radius * 2;
+  }
+
+  .loader::before {
+    animation: timer-loader 1250ms infinite linear;
+    background: $blue;
+    border-radius: $timer-arm-border-radius;
+    content: '';
+    display: block;
+    height: $timer-long-arm-length;
+    left: $timer-radius - $timer-arm-width;
+    position: absolute;
+    top: $timer-radius - $timer-arm-width;
+    transform-origin: ($timer-arm-width / 2) ($timer-arm-width / 2);
+    width: $timer-arm-width;
+  }
+
+  .loader::after {
+    animation: timer-loader 15000ms infinite linear;
+    background: $blue;
+    border-radius: $timer-arm-border-radius;
+    content: '';
+    display: block;
+    height: $timer-short-arm-length;
+    left: $timer-radius - $timer-arm-width;
+    position: absolute;
+    top: $timer-radius - $timer-arm-width;
+    transform-origin: ($timer-arm-width / 2) ($timer-arm-width / 2);
+    width: $timer-arm-width;
   }
 
   button {
 
-    $button-diameter: 160px;
-
-    background: $pillsbury-blue;
-    background-image: linear-gradient(to bottom, lighten($pillsbury-blue, 10%), lighten($pillsbury-blue, 5%));
-    border: none;
+    background: white;
+    background-image: linear-gradient(to bottom, rgba($blue, .02), rgba($blue, .08));
+    border: $button-border-thickness solid $blue;
     border-radius: 50%;
-    box-shadow: 1px 1px 4px rgba(black, .25), inset 0 0 8px rgba(black, .4);
-    color: white;
+    box-shadow: 1px 1px 4px rgba(black, .25), inset 0 0 ($button-radius * .2) rgba(black, .05);
+    color: $blue;
     cursor: pointer;
     display: block;
     font-family: $default-font-family;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: $thin-font-weight;
-    height: $button-diameter;
+    height: $button-radius * 2;
     left: 50%;
     line-height: 1;
-    margin-left: -$button-diameter / 2;
-    margin-top: -$button-diameter / 2;
+    margin-left: -$button-radius;
+    margin-top: -$button-radius;
     outline: none;
     padding: 0;
     position: absolute;
@@ -53,12 +86,13 @@
     transition: transform .15s ease-out;
     top: 50%;
     user-select: none;
-    width: $button-diameter;
+    width: $button-radius * 2;
     &:hover {
-      background-image: linear-gradient(to bottom, lighten($pillsbury-blue, 13%), lighten($pillsbury-blue, 8%));
+      background-image: linear-gradient(to bottom, rgba($blue, .08), rgba($blue, .14));
+      transform: scale(1.06);
     }
     &:active {
-      transform: scale(1.04);
+      transform: scale(1.08);
     }
   }
 
@@ -81,7 +115,7 @@
     }
 
     .woohoo {
-      color: lighten($pillsbury-blue, 15%);
+      color: $blue;
       font-size: 1em;
       font-weight: $light-font-weight;
       margin-top: .25em;
@@ -167,7 +201,7 @@
 
 }
 
-@keyframes three-quarters-loader {
+@keyframes timer-loader {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
