@@ -65,19 +65,29 @@
     @include respond-to(md) {
       padding: 0 $page-padding-horizontal-md;
     }
-    img {
-      border-radius: 4px;
-      box-shadow: 0 0 6px 0 rgba(black, .1);
-      display: block;
-      margin: 1.5em auto 2em;
-      position: relative;
+
+    .emoji {
+      vertical-align: -2px;
+      width: 20px;
     }
-    .line-through-image {
+
+    figure {
+      margin: 2em auto;
       position: relative;
       text-align: center;
+      figcaption {
+        margin-bottom: .5em;
+        text-align: center;
+      }
       a {
         @extend a.no-underline;
         display: inline-block;
+      }
+      img:not(.emoji) {
+        border-radius: 4px;
+        box-shadow: 0 0 6px 0 rgba(black, .1);
+        display: block;
+        position: relative;
       }
       &:before {
         border-top: 1px dotted rgba(white, .1);
