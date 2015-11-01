@@ -27,6 +27,8 @@ module CherryPickings
 
     config.assets.initialize_on_precompile = false
 
+    config.middleware.use Rack::Deflater # Enable Gzipping
+
     config.assets.precompile += [
       '*.html',
       '*/*.html'
