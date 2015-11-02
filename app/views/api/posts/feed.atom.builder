@@ -1,7 +1,7 @@
 #encoding: UTF-8
 
 atom_feed do |feed|
-  feed.title('Cherry-Pickings')
+  feed.title('Cherry Pickings')
   feed.updated(@posts.first.try(:updated_at))
   @posts.each do |post|
     feed.entry(post) do |entry|
