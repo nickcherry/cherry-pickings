@@ -23,6 +23,10 @@ a {
   &:hover {
     color: darken($link-color, 15%);
   }
+  img {
+    border: none;
+    outline: none;
+  }
 }
 
 a.no-underline {
