@@ -25,6 +25,7 @@ group :development, :test do
 end
 
 group :production do
+  gem 'prerender_rails', '~> 1.2.0'
   gem 'rails_12factor', '~> 0.0.3'
 end
 

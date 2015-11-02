@@ -91,5 +91,14 @@ Rails.application.configure do
     protocol: 'http', host: 'www.nick-cherry.com'
   }
 
+  # Allow prerender.io to render SPA for bots
+  config.middleware.use Rack::Prerender,
+    prerender_token: 'BW2yZibKfxULhx86lEVC',
+    before_render: Proc.new {|env|
+      Rails.cache.get(Rack::Request.new(env).url)
+    },
+    after_render: Proc.new {|env, response|
+      Rails.cache.set(Rack::Request.new(env).url, response.body, expires_in: 6.hours)
+    }
 
 end
