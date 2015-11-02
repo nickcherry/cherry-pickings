@@ -9,7 +9,7 @@ image: /images/examples/fade/4.gif
 While often subtle, opacity transitions are one of the most useful ways to gracefully add/remove elements to a view and to call out important changes in an interface. But if you rely on this technique as often as I do, you've probably come across a problem with hidden components getting in the way of interactive elements. Consider a situation where you have a loader, positioned in the center of the screen, which you want to fade out as the underlying content fades in. Something like this:
 
 <figure>
-  <a href="/examples/fade/1" target="_blank"><img src="/images/examples/fade/1.gif" title="Example 1"></a>
+  <a title="Fade Example 1" href="/examples/fade/1" target="_blank"><img src="/images/examples/fade/1.gif" alt="Fade Example 1"></a>
 </figure>
 
 With the following SCSS, you can achieve the effect pretty easily.
@@ -37,7 +37,7 @@ $ease: ease-out;
 Not too bad, right? But when the time comes to click our button...
 
 <figure>
-  <a href="/examples/fade/2" target="_blank"><img src="/images/examples/fade/2.gif" title="Example 2"></a>
+  <a title="Fade Example 2" href="/examples/fade/2" target="_blank"><img src="/images/examples/fade/2.gif" alt="Fade Example 2"></a>
 </figure>
 
 Blergh! It looks like the zero-opacity loader is blocking the underlying UI. No big deal, though, we know how to solve this problem; we'll just apply ` visibility: hidden` to our loader after initialization, causing the browser to hide the offending element and render our button pokable once again.
@@ -68,7 +68,7 @@ Blergh! It looks like the zero-opacity loader is blocking the underlying UI. No 
 ```
 
 <figure>
-  <a href="/examples/fade/3" target="_blank"><img src="/images/examples/fade/3.gif" title="Example 3"></a>
+  <a title="Fade Example 3" href="/examples/fade/3" target="_blank"><img src="/images/examples/fade/3.gif" alt="Fade Example 3"></a>
 </figure>
 
 Mission accomplished, kind of! We can interact with the button, but our loader lost its fade-out transition along the way. So now what?
@@ -107,7 +107,7 @@ Mission accomplished, kind of! We can interact with the button, but our loader l
 
 <figure>
   <figcaption>Ta-Da!</figcaption>
-  <a href="/examples/fade/4" target="_blank"><img src="/images/examples/fade/4.gif" title="Example 4"></a>
+  <a title="Fade Example 4" href="/examples/fade/4" target="_blank"><img src="/images/examples/fade/4.gif" alt="Fade Example 4"></a>
 </figure>
 
 ### The Explanation
