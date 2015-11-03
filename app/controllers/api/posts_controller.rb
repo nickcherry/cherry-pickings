@@ -6,7 +6,7 @@ module Api
     end
 
     def show
-      @post = Post.find params[:id]
+      @post = Post.find_by public_id: params[:id]
     end
 
     def feed

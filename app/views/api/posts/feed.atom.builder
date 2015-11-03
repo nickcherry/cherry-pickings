@@ -4,7 +4,7 @@ atom_feed do |feed|
   feed.title('Cherry Pickings')
   feed.updated(@posts.first.try(:updated_at))
   @posts.each do |post|
-    feed.entry(post) do |entry|
+    feed.entry(post, id: :public_id) do |entry|
       entry.title(post.title)
       entry.author {|author| author.name('Nick Cherry') }
       entry.content(post.body_html, type: 'html')

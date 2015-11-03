@@ -1,5 +1,5 @@
 json.cache! post do
-  json.id post.id
+  json.id post.public_id
   json.title post.title
   json.body_html post.body_html
   json.published_at post.published_at

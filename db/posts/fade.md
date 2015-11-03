@@ -1,5 +1,5 @@
 ---
-internal_id: fade
+public_id: fade
 title: The Perfect Fade
 tags: [css, transitions]
 published: true

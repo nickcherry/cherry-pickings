@@ -31,9 +31,11 @@ ActiveRecord::Schema.define(version: 20151101220541) do
     t.datetime "published_at"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-    t.string   "internal_id"
+    t.string   "public_id"
     t.string   "image"
   end
+
+  add_index "posts", ["public_id"], name: "index_posts_on_public_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"

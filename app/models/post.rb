@@ -1,8 +1,10 @@
 class Post < ActiveRecord::Base
 
+  validates :public_id, presence: true, uniqueness: true
   validates :title, presence: true
   validates :body_markdown, presence: true
 
+  before_save :prepare_public_id
   before_save :generate_body_markdown
   before_save :update_published_at
 
@@ -13,6 +15,12 @@ class Post < ActiveRecord::Base
   scope :recent, -> { order(published_at: :desc) }
 
 protected
+
+  def prepare_public_id
+    if public_id_changed?
+      self.public_id = public_id.parameterize
+    end
+  end
 
   def generate_body_markdown
     self.body_html = parser.render(body_markdown)

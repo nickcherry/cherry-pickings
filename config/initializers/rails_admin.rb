@@ -37,7 +37,7 @@ RailsAdmin.config do |config|
       exclude_fields :body_markdown, :body_html, :created_at, :updated_at
     end
     edit do
-      field :internal_id
+      field :public_id
       field :title
       field :body_markdown
       field :body_html do

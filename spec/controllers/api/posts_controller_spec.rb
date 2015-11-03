@@ -31,7 +31,7 @@ describe Api::PostsController, type: :controller do
   describe 'GET #show' do
     let!(:post) { FactoryGirl.create(:post) }
     let(:response_json) { JSON.parse(response.body) }
-    let(:response) { get :show, id: post.id }
+    let(:response) { get :show, id: post.public_id }
     it { expect(response.status).to eq 200 }
     it 'should return the post' do
       expect(response_json['title']).to eq post.title

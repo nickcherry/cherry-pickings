@@ -17,7 +17,7 @@ namespace :posts do
 
       yaml = YAML.load_file(filepath).deep_symbolize_keys
 
-      internal_id = yaml[:internal_id]
+      public_id = yaml[:public_id]
       title = yaml[:title]
       tags = yaml[:tags] || []
       published = yaml[:published]
@@ -25,8 +25,8 @@ namespace :posts do
 
       body_markdown = File.read(filepath).gsub(/---(.|\n)*---/, '').strip
 
-      puts "Finding or creating post with internal_id: #{ internal_id }"
-      post = Post.find_or_create_by(internal_id: yaml[:internal_id])
+      puts "Finding or creating post with public_id: #{ public_id }"
+      post = Post.find_or_create_by(public_id: public_id)
 
       puts "...title: #{ title }"
       post.title = title
