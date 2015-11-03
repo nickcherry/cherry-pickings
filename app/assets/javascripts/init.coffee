@@ -34,7 +34,7 @@ angular.module 'cherryPickings', [
           templateUrl: 'footer.html'
 
     .state 'root.posts',
-      url: '/posts'
+      url: '/blog'
       pageClass: 'posts'
       views:
         'main@':
@@ -42,7 +42,7 @@ angular.module 'cherryPickings', [
           templateUrl: 'posts.html'
 
     .state 'root.post',
-      url: '/post/:id'
+      url: '/blog/:id'
       pageClass: 'post'
       views:
         'main@':
