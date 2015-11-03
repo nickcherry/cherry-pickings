@@ -33,6 +33,10 @@ a.no-underline {
   border-bottom: none;
 }
 
+code {
+  word-wrap: break-word;
+}
+
 pre.highlight {
   background: white;
   border-radius: 4px;
@@ -41,6 +45,9 @@ pre.highlight {
   overflow: auto;
   padding: .5em 1em;
   width: auto;
+  code {
+    word-wrap: initial;
+  }
 }
 
 /* Normalize font rendering across browsers */
