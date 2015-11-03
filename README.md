@@ -32,10 +32,10 @@ rake posts:sync # syncs database with markdown posts found in db/posts
 To start the development server, run the following command:
 
 ```shell
-rails s
+foreman start
 ```
 
-Then visit [http://localhost:3000](http://localhost:3000) in a browser to view the app.
+Then visit [http://localhost:5000](http://localhost:5000) in a browser to view the app.
 
 ## Deployment
 
