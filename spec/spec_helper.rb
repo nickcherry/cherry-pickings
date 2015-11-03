@@ -5,6 +5,9 @@ require 'factory_girl_rails'
 require 'rspec/rails'
 require 'shoulda/matchers'
 
+Capybara.javascript_driver = :selenium
+Capybara.default_max_wait_time = 5
+
 RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
@@ -17,14 +20,14 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
 
-  config.use_transactional_fixtures = false
+  config.use_transactional_fixtures = true
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
 
   config.before(:each) do |example|
-    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+    DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.start
   end
 

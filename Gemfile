@@ -31,7 +31,6 @@ end
 
 group :test do
   gem 'capybara', '~> 2.5.0'
-  gem 'capybara-webkit', '~> 1.7.1'
   gem 'database_cleaner', '~> 1.5.0'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'guard-rspec', '~> 4.6.4'
