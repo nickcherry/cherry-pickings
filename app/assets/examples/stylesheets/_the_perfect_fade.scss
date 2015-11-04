@@ -132,7 +132,7 @@
     }
   }
 
-  &#fade-1-example, &#fade-2-example {
+  &#the-perfect-fade-1-example, &#the-perfect-fade-2-example {
     #wrapper {
       .content, .loader {
         transition: opacity $duration $ease $delay;
@@ -151,7 +151,7 @@
     }
   }
 
-  &#fade-3-example {
+  &#the-perfect-fade-3-example {
     #wrapper {
       .content, .loader {
         transition: opacity $duration $ease $delay;
@@ -173,7 +173,7 @@
     }
   }
 
-  &#fade-4-example {
+  &#the-perfect-fade-4-example {
     #wrapper {
       .loader {
         opacity: 1; visibility: visible;
