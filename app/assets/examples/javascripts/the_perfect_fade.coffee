@@ -1,5 +1,5 @@
 $(document).ready ->
-  return unless $('html').hasClass('fade-example')
+  return unless $('html').hasClass('the-perfect-fade-example')
 
   wrapperEl = $('#wrapper')
   buttonEl = $('button')
