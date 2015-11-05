@@ -4,7 +4,6 @@ RSpec.describe Renderers::PostBodyHtmlRenderer do
 
   let(:parser) { Parsers::PostBodyMarkdownParser.new(renderer) }
   let(:renderer) { Renderers::PostBodyHtmlRenderer.new }
-  let(:base_url) { "http://localhost:5000" }
 
   def normalize_html(str)
     str.gsub("\n", '').squeeze(' ')
