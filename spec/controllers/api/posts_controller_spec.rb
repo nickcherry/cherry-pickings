@@ -39,4 +39,19 @@ describe Api::PostsController, type: :controller do
       expect(response_json['tags']).to be_a_kind_of(Array)
     end
   end
+
+  describe 'GET #feed' do
+    let!(:post) { FactoryGirl.create(:post) }
+    let(:response_xml) { Hash.from_xml(response.body) }
+    let(:response) { get :feed }
+    it 'should include the post information' do
+      feed = response_xml['feed']
+      expect(feed['title']).to eq 'Cherry Pickings'
+      entry = feed['entry']
+      expect(entry['author']['name']).to eq 'Nick Cherry'
+      expect(entry['title']).to eq post.title
+      expect(entry['content']).to eq post.body_html
+      expect(entry['link']['href']).to eq "#{ base_url }/blog/#{ post.public_id }"
+    end
+  end
 end

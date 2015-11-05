@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def post_url(post)
-    File.join(root_url, 'posts', post.id.to_s)
+    File.join(root_url, 'blog', post.public_id)
   end
 
 end
