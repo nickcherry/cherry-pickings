@@ -10,7 +10,12 @@ namespace :posts do
   desc 'Sync database posts with markdown posts found in db/posts'
   task :sync => :environment do
 
-    dir = File.join(Rails.root, 'db', 'posts')
+    dir = if markdown_path = ENV['markdown_path']
+      File.join Rails.root, markdown_path
+    else
+      File.join(Rails.root, 'db', 'posts')
+    end
+
     matcher = /(\.md|\.markdown)$/i
 
     Find.find(dir).select{|filepath| matcher =~ filepath }.each do |filepath|
