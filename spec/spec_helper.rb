@@ -1,14 +1,16 @@
 ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path('../../config/environment', __FILE__)
+require 'capybara/poltergeist'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'factory_girl_rails'
 require 'rspec/rails'
 require 'shoulda/matchers'
 
-Capybara.javascript_driver = :selenium
+Capybara.javascript_driver = :poltergeist
 Capybara.default_max_wait_time = 5
+Capybara.server_port = 9876
 
 RSpec.configure do |config|
 

@@ -1,11 +1,12 @@
 require 'rake'
 require 'rails_helper'
 
-describe 'Post Links and Assets', type: :feature do
+describe 'Post Links and Assets', type: :feature, js: true do
 
-  before do
+  before :each do
     load File.join(Rails.root, 'lib', 'tasks', 'posts.rake')
     Rake::Task.define_task(:environment)
+    Rake::Task['posts:sync'].reenable
     Rake::Task['posts:sync'].invoke
   end
 

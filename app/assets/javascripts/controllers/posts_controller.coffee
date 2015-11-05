@@ -4,7 +4,6 @@ angular.module('cherryPickings').controller 'PostsController', ($scope, PostReso
     $scope.errors = null
     new PostResource().list().then (response) ->
       $scope.posts = response.data
-      console.log 'posts:', response.data
       $scope.initialized = true
     , ->
       $scope.errors = ['There was a problem fetching the posts.']

@@ -10,6 +10,10 @@ namespace :posts do
   desc 'Sync database posts with markdown posts found in db/posts'
   task :sync => :environment do
 
+    def log(message)
+      puts(message) unless Rails.env.test?
+    end
+
     dir = if markdown_path = ENV['markdown_path']
       File.join Rails.root, markdown_path
     else
@@ -30,19 +34,21 @@ namespace :posts do
 
       body_markdown = File.read(filepath).gsub(/---(.|\n)*---/, '').strip
 
-      puts "Finding or creating post with public_id: #{ public_id }"
+      log "Finding or creating post with public_id: #{ public_id }"
       post = Post.find_or_create_by(public_id: public_id)
 
-      puts "...title: #{ title }"
       post.title = title
-      puts "...tags: #{ tags.join(', ') }"
       post.tags = tags.map {|tag_name| Tag.find_or_create_by(name: tag_name) }
-      puts "...image: #{ image }"
       post.image = image
-      puts "...published: #{ published }"
       post.published = published
-      puts "...body_markdown: #{ body_markdown }"
       post.body_markdown = body_markdown
+
+      log "Saving post:"
+      log "...title: #{ title }"
+      log "...tags: #{ tags.join(', ') }"
+      log "...image: #{ image }"
+      log "...published: #{ published }"
+      log "...body_markdown: #{ body_markdown }"
 
       post.save!
 

@@ -37,6 +37,26 @@ foreman start
 
 Then visit [http://localhost:5000](http://localhost:5000) in a browser to view the app.
 
+## Tests
+
+First, be sure to prepare the test environment by running:
+
+```shell
+rake db:test:prepare
+```
+
+Then, to start the test suite:
+
+```shell
+rspec
+```
+
+If you'd like to watch for changes to specs and automatically run tests:
+
+```shell
+guard
+```
+
 ## Deployment
 
 To deploy to Heroku, first ensure that the app is configured to use the [Ruby-Bower buildpack](https://github.com/qnyp/heroku-buildpack-ruby-bower.git), then run:
