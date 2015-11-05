@@ -14,8 +14,8 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.filter_run_excluding(category: :benchmark)
+  config.infer_spec_type_from_file_location!
   config.order = 'random'
   config.raise_errors_for_deprecations!
-  config.use_transactional_fixtures = true
 
 end

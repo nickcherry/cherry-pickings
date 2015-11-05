@@ -3,13 +3,12 @@ require 'rails_helper'
 describe 'Homepage', type: :feature, js: true do
   describe 'GET #index' do
 
-    before :all do
-      FactoryGirl.create(:post, title: 'Hola Mundo', body_markdown: 'Lorem Españolum', tags: [FactoryGirl.create(:tag, name: 'spanish')], published_at: Date.yesterday )
-      FactoryGirl.create(:post, title: 'Hello World', body_markdown: 'Lorem Englishum', tags: [FactoryGirl.create(:tag, name: 'english')], published_at: Date.today)
-      FactoryGirl.create(:post, title: '你好，世界', body_markdown: 'Lorem 中国um', tags: [FactoryGirl.create(:tag, name: 'chinese')], published_at: Date.tomorrow)
+    before(:each) do
+      FactoryGirl.create(:post, title: 'Hola Mundo', body_markdown: 'Lorem Españolum', tags: [FactoryGirl.create(:tag, name: 'spanish')], published_at: Time.now.utc - 1.day )
+      FactoryGirl.create(:post, title: 'Hello World', body_markdown: 'Lorem Englishum', tags: [FactoryGirl.create(:tag, name: 'english')], published_at: Time.now.utc)
+      FactoryGirl.create(:post, title: '你好，世界', body_markdown: 'Lorem 中国um', tags: [FactoryGirl.create(:tag, name: 'chinese')], published_at: Time.now.utc + 1.day)
+      visit '/'
     end
-
-    before(:each) { visit '/' }
 
     it 'renders the navigation' do
       expect(page).to have_content 'Cherry Pickings'
@@ -40,8 +39,10 @@ describe 'Homepage', type: :feature, js: true do
     end
 
     it 'links to posts' do
-      click_link 'Hola Mundo'
-      expect(current_path).to eq('/blog/hola-mundo')
+      click_link 'Hello World'
+      expect(current_path).to eq('/blog/hello-world')
+      expect(page).to have_content 'Lorem Englishum'
+      expect(page).to have_content '#english'
     end
   end
 end
