@@ -62,10 +62,10 @@ guard
 
 ## Deployment
 
-To deploy to Heroku, first ensure that the app is configured to use the [Ruby-Bower buildpack](https://github.com/qnyp/heroku-buildpack-ruby-bower.git), then run:
+Ensure that the Heroku app is configured to use the [Ruby-Bower buildpack](https://github.com/qnyp/heroku-buildpack-ruby-bower.git).
+
+After every green commit to `master`, [CircleCI](https://circleci.com/gh/nickcherry/cherry-pickings/tree/master) will automatically deploy to Heroku, migrate the database, and sync databases posts with the markdown found in `db/posts`. This process can also be invoked manually by running the following rake task:
 
 ```shell
 rake deploy:production
 ```
-
-The rake task will push the master branch to Heroku, then automatically migrate the database and sync database posts with the markdown found in `db/posts`.
