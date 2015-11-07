@@ -1,3 +1,6 @@
+
+[![Build Status](http://circleci-badges-max.herokuapp.com/img/nickcherry/cherry-pickings/master?token=351b5349fa74fed8aecae1e81dcd6289aae936f1)](https://circleci.com/gh/nickcherry/cherry-pickings/tree/master)
+
 # Cherry-Pickings
 
 ## Development Setup
