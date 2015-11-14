@@ -18,6 +18,7 @@ gem 'rails_admin', '~> 0.7.0'
 gem 'redcarpet', '~> 3.3.2'
 gem 'rouge', '~> 1.10.1'
 gem 'sass-rails', '~> 5.0'
+gem 'sitemap_generator', '~> 5.1.0'
 gem 'uglifier', '~> 1.3.0'
 gem 'unicorn', '~> 5.0.0'
 
@@ -39,4 +40,5 @@ group :test do
   gem 'rspec-rails', '~> 3.3.3'
   gem 'shoulda-matchers', '~> 3.0.0'
   gem 'terminal-notifier-guard', '~> 1.6.4'
+  gem 'webmock', '~> 1.22.3'
 end

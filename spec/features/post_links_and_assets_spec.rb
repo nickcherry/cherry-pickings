@@ -1,16 +1,10 @@
 require 'rake'
 require 'rails_helper'
 
-describe 'Post Links and Assets', type: :feature, js: true do
-
-  before :each do
-    load File.join(Rails.root, 'lib', 'tasks', 'posts.rake')
-    Rake::Task.define_task(:environment)
-    Rake::Task['posts:sync'].reenable
-    Rake::Task['posts:sync'].invoke
-  end
+describe 'Post internal links and assets', type: :feature, js: true do
 
   it 'should all return healthy status codes' do
+    rake 'posts:sync'
     expect(Post.count).to be > 0 # sanity check
     Post.all.each do |post|
       URI.extract(post.body_html, ['http', 'https']).each do |link|

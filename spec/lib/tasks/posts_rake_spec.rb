@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 describe 'posts:sync' do
-  include_context 'rake'
 
   def invoke(folder)
     ENV['markdown_path'] = File.join('spec', 'support', 'files', 'markdown', folder)
-    subject.reenable
-    subject.invoke
+    rake 'posts:sync'
   end
 
   let(:post_a) { Post.find_by public_id: 'a' }
