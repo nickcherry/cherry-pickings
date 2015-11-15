@@ -25,5 +25,6 @@ blockquote:after {
 }
 
 blockquote p {
+  word-break: break-all;
   display: inline;
 }
