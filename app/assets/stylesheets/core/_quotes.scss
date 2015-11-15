@@ -7,10 +7,11 @@ blockquote {
 }
 
 blockquote:before, blockquote:after {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   font-size: 3.85em;
   line-height: 0.1em;
   opacity: .3;
+  overflow: visible;
 }
 
 blockquote:before {
