@@ -69,3 +69,5 @@ After every green commit to `master`, [CircleCI](https://circleci.com/gh/nickche
 ```shell
 rake deploy:production
 ```
+
+The production application lives at [http://www.nick-cherry.com](http://www.nick-cherry.com).
