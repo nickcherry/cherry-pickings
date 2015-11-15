@@ -1,11 +1,4 @@
-@import 'config/breakpoints';
-@import 'config/depths';
-@import 'config/easing';
-@import 'config/fonts';
-@import 'config/palette';
-@import 'config/sizes';
-
-@import 'mixins';
-@import 'base';
+@import 'config';
+@import 'core';
 
 @import '../examples/stylesheets/the_perfect_fade';

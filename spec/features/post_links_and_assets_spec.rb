@@ -3,6 +3,10 @@ require 'rails_helper'
 
 describe 'Post internal links and assets', type: :feature, js: true do
 
+  before :each do
+    stub_request(:get, /^((?!(localhost|127\.0\.0\.1)).)*$/).to_return(status: 200)
+  end
+
   it 'should all return healthy status codes' do
     rake 'posts:sync'
     expect(Post.count).to be > 0 # sanity check

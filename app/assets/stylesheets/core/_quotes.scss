@@ -1,0 +1,29 @@
+blockquote {
+  font-size: .95em;
+  font-style: italic;
+  margin: 30px 30px 20px;
+  opacity: .8;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote:before, blockquote:after {
+  font-family: Arial;
+  font-size: 3.85em;
+  line-height: 0.1em;
+  opacity: .3;
+}
+
+blockquote:before {
+  content: open-quote;
+  margin-right: 8px;
+  vertical-align: -0.4em;
+}
+
+blockquote:after {
+  content: close-quote;
+  vertical-align: -0.5em;
+}
+
+blockquote p {
+  display: inline;
+}

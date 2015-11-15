@@ -66,11 +66,6 @@
       padding: 0 $page-padding-horizontal-md;
     }
 
-    .emoji {
-      vertical-align: -2px;
-      width: 20px;
-    }
-
     figure {
       margin: 2em auto;
       position: relative;
@@ -142,22 +137,26 @@
   }
 
   /***************************************************/
-  /* Background colors */
+  /* Colors */
   /***************************************************/
 
-  &:nth-of-type(4n+1),
-  &:nth-of-type(4n+3) {
-    color: white;
-    .heading {
-      border-bottom-color: rgba(white, .2);
-      .post-title a {
-        color: white;
-      }
-    }
-  }
   &:nth-of-type(2n+1) {
     .post-content, .post-top-slope, .post-bottom-slope {
       background-color: $mine-shaft;
+      color: white;
+      .heading {
+        border-bottom-color: rgba(white, .2);
+        .post-title a {
+          color: white;
+        }
+      }
+    }
+  }
+
+  &:nth-of-type(2n+0) {
+    @extend .dark-list-items;
+    figure:before {
+      border-top-color: rgba($mine-shaft, .4);
     }
   }
 }

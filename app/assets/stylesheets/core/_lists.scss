@@ -1,0 +1,59 @@
+ul li {
+
+  list-style: none;
+  padding-left: 28px;
+  position: relative;
+
+  &:before {
+    background-image: url('/images/cherries-light.svg');
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    content: ' ';
+    display: block;
+    height: 18px;
+    left: 0;
+    margin-right: 10px;
+    opacity: .8;
+    position: absolute;
+    top: 4px;
+    width: 18px;
+  }
+
+  li {
+    font-size: .9em;
+    line-height: 1.7em;
+    padding-left: 19px;
+    &:before {
+      background-image: url('/images/cherry-light.svg');
+      background-size: 15px 15px;
+      opacity: .65;
+      top: 5px;
+      width: 15px;
+    }
+  }
+}
+
+ul, ol {
+  padding-left: 0;
+}
+li ul, li ol {
+  padding-left: 0;
+  ol, ul {
+    margin-bottom: 10px;
+  }
+}
+
+li p + ul {
+  margin-top: -10px;
+}
+
+.dark-list-items {
+  ul li {
+    &:before {
+      background-image: url('/images/cherries-dark.svg');
+    }
+    li:before {
+      background-image: url('/images/cherry-dark.svg');
+    }
+  }
+}

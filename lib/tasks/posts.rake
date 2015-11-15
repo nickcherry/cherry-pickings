@@ -32,7 +32,7 @@ namespace :posts do
       published = yaml[:published]
       image = yaml[:image]
 
-      body_markdown = File.read(filepath).gsub(/---(.|\n)*---/, '').strip
+      body_markdown = File.read(filepath).gsub(/^---(.|\n)*---$/, '').strip
 
       log "Finding or creating post with public_id: #{ public_id }"
       post = Post.find_or_create_by(public_id: public_id)

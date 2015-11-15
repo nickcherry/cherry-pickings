@@ -1,0 +1,22 @@
+a {
+  $link-color: $ocean-spray;
+
+  border-bottom: 1px solid;
+  color: $link-color;
+  cursor: pointer;
+  text-decoration: none;
+  &:link, &:visited, &:hover, &:active {
+    outline: none;
+  }
+  &:hover {
+    color: darken($link-color, 15%);
+  }
+  img {
+    border: none;
+    outline: none;
+  }
+}
+
+a.no-underline {
+  border-bottom: none;
+}

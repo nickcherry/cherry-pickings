@@ -1,0 +1,19 @@
+html, body {
+  color: $default-color;
+  font-family: $default-font-family;
+  font-size: 20px;
+  font-weight: $thin-font-weight;
+  line-height: 1.5em;
+}
+
+/* Normalize font rendering across browsers */
+html.ios body, html.safari body {
+  font-weight: $thin-font-weight;
+  -webkit-font-smoothing: subpixel-antialiased; // none | antialiased | subpixel-antialiased;
+}
+html.chrome body {
+  -webkit-font-smoothing: subpixel-antialiased; // none | antialiased | subpixel-antialiased;
+}
+html.firefox body {
+  -moz-osx-font-smoothing: grayscale; // auto | grayscale
+}
