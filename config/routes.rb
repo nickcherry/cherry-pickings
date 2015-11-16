@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
 
   get 'feed', controller: 'api/posts', action: :feed
+  get 'sitemap', controller: 'sitemaps', action: :sitemap
 
   get 'examples/:name/:instance', controller: 'examples', action: :index
 
