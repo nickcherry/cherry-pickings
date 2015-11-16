@@ -11,7 +11,7 @@ xml.urlset(
   end
 
   xml.url do
-    xml.loc "#{ root_url }/blog"
+    xml.loc "#{ root_url }blog"
     xml.changefreq 'daily'
     xml.priority 1
   end
