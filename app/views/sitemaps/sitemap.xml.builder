@@ -7,11 +7,13 @@ xml.urlset(
   xml.url do
     xml.loc root_url
     xml.changefreq 'daily'
+    xml.priority 1
   end
 
   xml.url do
     xml.loc "#{ root_url }/blog"
     xml.changefreq 'daily'
+    xml.priority 1
   end
 
   @posts.each do |post|
@@ -19,6 +21,7 @@ xml.urlset(
       xml.loc post_url(post)
       xml.lastmod post.updated_at.strftime("%F")
       xml.changefreq 'weekly'
+      xml.priority 0.5
       if post.image?
         xml.image :image do
           xml.image :loc, asset_url(post.image)
