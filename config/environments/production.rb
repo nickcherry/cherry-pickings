@@ -93,7 +93,7 @@ Rails.application.configure do
 
   # Allow prerender.io to render SPA for bots
   config.middleware.use Rack::Prerender,
-    prerender_token: 'BW2yZibKfxULhx86lEVC',
+    prerender_token: ENV['PRERENDER_TOKEN'],
     before_render: Proc.new {|env|
       Rails.cache.get(Rack::Request.new(env).url)
     },
