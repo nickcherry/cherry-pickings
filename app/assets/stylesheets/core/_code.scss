@@ -1,10 +1,21 @@
 code {
-  background: rgba($white-smoke, .13);
+  background: rgba($white-smoke, .1);
   border-radius: 3px;
+  box-shadow: 0 0 2px 0 rgba(black, .1);
   font-size: .85em;
-  padding: .1em .4em;
+  padding: .13em .42em;
   word-wrap: break-word;
 }
+
+.more-opaque-code {
+  code {
+    background: $white-smoke;
+  }
+  pre.highlight code {
+    background: none;
+  }
+}
+
 
 pre.highlight {
   background: $white-smoke;
@@ -17,6 +28,7 @@ pre.highlight {
   width: auto;
   code {
     background: none;
+    box-shadow: none;
     padding: 0;
     word-wrap: initial;
   }

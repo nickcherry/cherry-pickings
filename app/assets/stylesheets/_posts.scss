@@ -155,6 +155,7 @@
 
   &:nth-of-type(2n+0) {
     @extend .dark-list-items;
+    @extend .more-opaque-code;
     figure:before {
       border-top-color: rgba($mine-shaft, .4);
     }
