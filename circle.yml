@@ -9,4 +9,4 @@ deployment:
       - git push git@heroku.com:cherry-pickings.git $CIRCLE_SHA1:refs/heads/master --force
       - heroku run rake db:migrate --app cherry-pickings
       - heroku run rake posts:sync --app cherry-pickings
-      - heroku run rake sitemap:refresh --app cherry-pickings
+      - heroku run rake sitemaps:notify --app cherry-pickings

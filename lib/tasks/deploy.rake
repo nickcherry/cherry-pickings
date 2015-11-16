@@ -7,7 +7,7 @@ namespace :deploy do
     system "git push #{ remote } master #{ force ? '--force' : '' }"
     system "heroku run rake db:migrate --app #{ app }"
     system "heroku run rake posts:sync --app #{ app }"
-    system "heroku run rake sitemap:refresh --app #{ app }"
+    system "heroku run rake sitemaps:deploy --app #{ app }"
   end
 
   desc 'Deploy to Heroku'
