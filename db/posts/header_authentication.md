@@ -5,7 +5,7 @@ tags: [angular, rails, nginx, authentication]
 published: true
 ---
 
-Few developers would describe authentication as the most glamorous feature they've ever implemented, but it comes up a lot. With traditional web applications, keeping track off logged in users [is relatively straightforward](http://www.theodinproject.com/ruby-on-rails/sessions-cookies-and-authentication). While authenticating API requests isn't rocket science, the solution might not be as immediately obvious. Today we're going to walk through a simple, reusable strategy that's served me well in authenticating requests between Angular and Rails. :lock:
+Few developers would describe authentication as the most glamorous feature they've ever implemented, but it comes up a lot. With traditional web applications, keeping track of logged in users [is relatively straightforward](http://www.theodinproject.com/ruby-on-rails/sessions-cookies-and-authentication). While authenticating API requests isn't rocket science, the solution might not be as immediately obvious. Today we're going to walk through a simple, reusable strategy that's served me well in authenticating requests between Angular and Rails. :lock:
 
 <a href="https://docs.angularjs.org/api/ng/service/$http" target="_blank">Interceptors</a> are services that enable us to tap into and manipulate any request or response that goes through Angular's `$http` module. I know what you're probably thinking right now:
 
