@@ -70,7 +70,7 @@ I'm glad you asked! On the front-end, we're going to do it like this:
 
 And there we have it! With a baker's dozen lines of code, our Angular app is including the user's auth code with every request _and_ redirecting to sign-in if authentication ever fails. Pretty sweet, huh? :cake:
 
-Now that our front-end is taken care of, let's whip up the server-side code. In Rails, we can implement a base `ApiController` from which all of our API controllers can inherit. For each incoming request, we'll validate the auth token; if the token checks out, the request will go through as usual, otherwise we'll respond with a 401. If we ever want to bypass authentication, we can just do something like `skip_before_action :authenticate!, only: [:sign_in]` for the relevant child controller.
+Now that our front-end is taken care of, let's whip up the server-side code. In Rails, we can implement a base `ApiController` from which all of our API controllers can inherit. For each incoming request, we'll validate the auth token; if the token checks out, the request will go through as usual, otherwise we'll respond with a 401. If we ever want to bypass authentication, we can just do something like `skip_before_action :authenticate!, only: [:create]` for the relevant child controller (e.g. `SessionsController`).
 
 ```ruby
 class ApiController < ApplicationController
