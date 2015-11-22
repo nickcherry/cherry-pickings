@@ -77,11 +77,16 @@
       a {
         @extend a.no-underline;
         display: inline-block;
+        img {
+          display: block;
+        }
+      }
+      img:not(.emoji) {
+        display: inline-block;
       }
       img:not(.emoji) {
         border-radius: 4px;
         box-shadow: 0 0 6px 0 rgba(black, .15);
-        display: block;
         max-width: 100%;
         position: relative;
       }
