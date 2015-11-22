@@ -68,7 +68,6 @@
 
     figure {
       margin: 2em auto;
-      position: relative;
       text-align: center;
       figcaption {
         margin-bottom: .5em;
@@ -76,27 +75,25 @@
       }
       a {
         @extend a.no-underline;
-        display: inline-block;
-        img {
-          display: block;
-        }
       }
-      img:not(.emoji) {
-        display: inline-block;
+      .image-wrapper {
+        display: block;
+        position: relative;
+        &:before {
+          border-top: 1px dotted rgba(white, .1);
+          content: '';
+          display: block;
+          position: absolute;
+          top: 45%;
+          width: 100%;
+        }
       }
       img:not(.emoji) {
         border-radius: 4px;
         box-shadow: 0 0 6px 0 rgba(black, .15);
+        display: inline-block;
         max-width: 100%;
         position: relative;
-      }
-      &:before {
-        border-top: 1px dotted rgba(white, .1);
-        content: '';
-        display: block;
-        position: absolute;
-        top: 45%;
-        width: 100%;
       }
     }
   }

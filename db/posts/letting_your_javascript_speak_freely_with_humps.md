@@ -13,7 +13,9 @@ under_score Identifier Styles" href="http://www.cs.kent.edu/~jmaletic/papers/ICP
 
 <figure>
   <figcaption>My response:</figcaption>
-  <img src="/images/posts/why-not-both.gif" alt="Why not both?">
+  <div class="image-wrapper">
+    <img src="/images/posts/why-not-both.gif" alt="Why not both?">
+  </div>
 </figure>
 
 <a title="Humps" target="_blank" href="https://github.com/domchristie/humps">Humps</a> is a handy little javascript library that recursively converts javascript object keys between camelCase and snake_case. If we're using Angular, we can configure `$httpProvider` to decamelize (i.e. snake_case) all outgoing request data and to camelize incoming response data. As a result, both our client and server can write in their native tongues and still communicate effectively with one another!
