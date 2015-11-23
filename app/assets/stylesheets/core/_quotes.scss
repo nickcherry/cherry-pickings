@@ -11,11 +11,11 @@ blockquote:before, blockquote:after {
   font-size: 3.85em;
   line-height: 0.1em;
   opacity: .3;
+  padding-right: 8px;
 }
 
 blockquote:before {
   content: open-quote;
-  padding-right: 8px;
   vertical-align: -0.4em;
 }
 
