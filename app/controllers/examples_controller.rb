@@ -26,7 +26,10 @@ protected
   end
 
   def shared_template?(example_name)
-    ['the-perfect-fade'].include? example_name
+    [
+      'the-perfect-fade',
+      'child-to-parent-directive-communication'
+    ].include? example_name
   end
 
 end

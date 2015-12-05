@@ -5,10 +5,17 @@
     "Nick Cherry <nickcherryjiggz@gmail.com>"
   ],
   "dependencies": {
-    "angular": "1.4.6",
+    "angular": "1.4.8",
     "angular-ui-router": "0.2.15",
     "bowser": "1.0.0",
     "humps": "0.7.0",
-    "lodash": "3.10.1"
+    "lodash": "3.10.1",
+    "ng-emoticons": "2.0.1",
+    "angular-sanitize": "1.4.8",
+    "highlightjs": "~8.9.1"
+  },
+  "resolutions": {
+    "angular": "1.4.8",
+    "angular-sanitize": "1.4.8"
   }
 }

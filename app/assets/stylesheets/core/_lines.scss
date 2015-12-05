@@ -1,0 +1,11 @@
+hr {
+  border: 0;
+  border-bottom-color: rgba(white, .2);
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  margin: 1.5em 0 .5em;
+}
+
+.dark-hr {
+  border-bottom-color: rgba($default-color, .8);
+}

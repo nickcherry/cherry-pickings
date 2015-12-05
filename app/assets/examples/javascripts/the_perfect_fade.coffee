@@ -1,11 +1,12 @@
-$(document).ready ->
-  return unless $('html').hasClass('the-perfect-fade-example')
+if $('html').hasClass('the-perfect-fade-example')
 
-  wrapperEl = $('#wrapper')
-  buttonEl = $('button')
+  $(document).ready ->
 
-  initialize = -> wrapperEl.addClass('initialized')
-  revealDoughboy = -> wrapperEl.addClass('poked')
+    wrapperEl = $('#wrapper')
+    buttonEl = $('button')
 
-  setTimeout(initialize, 2000)
-  buttonEl.on 'click', revealDoughboy
+    initialize = -> wrapperEl.addClass('initialized')
+    revealDoughboy = -> wrapperEl.addClass('poked')
+
+    setTimeout(initialize, 2000)
+    buttonEl.on 'click', revealDoughboy
