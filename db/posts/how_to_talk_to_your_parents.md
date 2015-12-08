@@ -15,7 +15,7 @@ Below you'll find a live demo of the app we're going to build. It's a simple dri
 
 <figure>
   <div class="iframe-wrapper">
-    <iframe src="/examples/child-to-parent-directive-communication/shared-scope" frameborder="0" width="360" height="270" scrolling="no"></iframe>
+    <iframe src="/examples/child-to-parent-directive-communication/shared-scope" frameborder="0" width="360" height="280" scrolling="no"></iframe>
   </div>
 </figure>
 
