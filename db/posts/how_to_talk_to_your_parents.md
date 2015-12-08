@@ -9,7 +9,7 @@ Directives are swell. They give us the power the build reusable, native-feeling 
 
 > How do we get our child directives to communicate with their parents???
 
-Once Angular 2 comes out, <a href="http://blog.thoughtram.io/angular/2015/08/20/host-and-visibility-in-angular-2-dependency-injection.html" target="_blank">the answer to that question should be more standardized</a>, but in the meantime, there's no one right solution. Today we're going to go over four patterns that have served me well in past. There are pros and cons to each, and the best implementation will depend on the use case; so your mileage may very. Still, though, the more tools in your toolbox the better, right? :hammer: :wrench: :nut_and_bolt: :balloon:
+Once Angular 2 comes out, <a href="http://blog.thoughtram.io/angular/2015/08/20/host-and-visibility-in-angular-2-dependency-injection.html" target="_blank">the answer to that question should be more standardized</a>, but in the meantime, there's no one right solution. Today we're going to go over four patterns that have served me well in past. There are pros and cons to each, and the best implementation will depend on the use case; so your mileage may vary. Still, though, the more tools in your toolbox the better, right? :hammer: :wrench: :nut_and_bolt: :balloon:
 
 Below you'll find a live demo of the app we're going to build. It's a simple drink-ordering system for Cherry Tavern. The establishment serves decent beverages, but the bartenders are notoriously unforgiving, hence the inability to remove items from your tab once you've ordered them. :wink:
 
