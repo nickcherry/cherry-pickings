@@ -42,9 +42,12 @@
       color: $white-smoke;
       cursor: pointer;
       font-size: 16px;
+      height: 24px;
       margin-left: 12px;
       margin-top: 5px;
       outline: none;
+      text-align: center;
+      width: 24px;
       &:hover {
         background: lighten($persian-green, 4%);
       }
