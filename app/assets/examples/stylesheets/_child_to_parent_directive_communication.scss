@@ -1,0 +1,68 @@
+.child-to-parent-directive-communication-example {
+  background: white;
+  margin: auto;
+  max-width: 340px;
+
+  ng-emoticons div {
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: 2px;
+  }
+
+  .header {
+    background: $mexican-red;
+    border-radius: 4px;
+    color: white;
+    margin-bottom: 4px;
+    padding: 4px 4px 3px;
+    text-align: center;
+  }
+
+  .item {
+    border-bottom: 1px dotted rgba($default-color, .3);
+    min-height: 2em;
+    padding: 2px 4px;
+    .in-cart {
+      font-size: .55em;
+      margin-left: 6px;
+      vertical-align: 0px;
+    }
+    button, .price {
+      float: right;
+    }
+    .price {
+      font-size: .85em;
+      margin-top: 3px;
+    }
+    button {
+      background: $persian-green;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 0 1px rgba(black, .15);
+      color: $white-smoke;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 12px;
+      margin-top: 5px;
+      outline: none;
+      &:hover {
+        background: lighten($persian-green, 4%);
+      }
+    }
+  }
+  .total {
+    font-weight: $medium-font-weight;
+    margin-right: 38px;
+    margin-top: 2px;
+    .summary {
+      float: left;
+      font-size: .55em;
+      margin-left: 8px;
+      margin-top: 2px;
+    }
+    .value {
+      float: right;
+      font-size: .85em;
+    }
+  }
+}

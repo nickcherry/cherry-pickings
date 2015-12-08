@@ -76,7 +76,7 @@
       a {
         @extend a.no-underline;
       }
-      .image-wrapper {
+      .image-wrapper, .iframe-wrapper {
         display: block;
         position: relative;
         &:before {
@@ -159,6 +159,7 @@
   &:nth-of-type(2n+0) {
     @extend .dark-list-items;
     @extend .more-opaque-code;
+    @extend .dark-hr;
     figure:before {
       border-top-color: rgba($mine-shaft, .4);
     }

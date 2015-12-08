@@ -5,7 +5,10 @@
 
 #= require angular
 #= require angular-rails-templates
+#= require angular-sanitize
 #= require angular-ui-router
+#= require highlightjs
+#= require ng-emoticons
 
 #= require_tree ./templates
 

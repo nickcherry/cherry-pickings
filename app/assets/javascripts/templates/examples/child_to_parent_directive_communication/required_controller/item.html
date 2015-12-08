@@ -1,0 +1,6 @@
+<div class='item'>
+  <button ng-click='addToCart(item)'>+</button>
+  <span class='price'>{{ item.price | currency }}</span>
+  <ng-emoticons emoticons-data='item.icon'></ng-emoticons>
+  <span class='name'>{{ item.name }}</span>
+</div>
