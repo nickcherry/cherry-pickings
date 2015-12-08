@@ -1,5 +1,6 @@
 .child-to-parent-directive-communication-example {
   background: white;
+  font-size: 16px;
   margin: auto;
   max-width: 340px;
 
@@ -22,16 +23,11 @@
     border-bottom: 1px dotted rgba($default-color, .3);
     min-height: 2em;
     padding: 2px 4px;
-    .in-cart {
-      font-size: .55em;
-      margin-left: 6px;
-      vertical-align: 0px;
-    }
     button, .price {
       float: right;
     }
     .price {
-      font-size: .85em;
+      font-size: 14px;
       margin-top: 3px;
     }
     button {
@@ -55,17 +51,17 @@
   }
   .total {
     font-weight: $medium-font-weight;
-    margin-right: 38px;
+    margin-right: 40px;
     margin-top: 2px;
     .summary {
       float: left;
-      font-size: .55em;
+      font-size: 11px;
       margin-left: 8px;
       margin-top: 2px;
     }
     .value {
       float: right;
-      font-size: .85em;
+      font-size: 14px;
     }
   }
 }
