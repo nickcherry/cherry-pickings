@@ -38,12 +38,13 @@
       color: $white-smoke;
       cursor: pointer;
       font-size: 16px;
-      height: 24px;
+      height: 25px;
       margin-left: 12px;
       margin-top: 5px;
       outline: none;
+      padding: 0 0 3px;
       text-align: center;
-      width: 24px;
+      width: 25px;
       &:hover {
         background: lighten($persian-green, 4%);
       }
