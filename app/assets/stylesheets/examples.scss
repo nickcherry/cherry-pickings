@@ -1,4 +1,6 @@
-@import 'config';
-@import 'ng-emoticons.css';
-@import '../examples/stylesheets/**/*';
+//*= require ../../../bower_components/ng-emoticons/dist/ng-emoticons.min.css
 
+@import 'config';
+@import 'core';
+
+@import '../examples/stylesheets/**/*';
