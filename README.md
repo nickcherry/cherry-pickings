@@ -3,6 +3,8 @@
 
 # Cherry-Pickings
 
+Ma blog!
+
 ## Development Setup
 
 ### Installing Dependencies
