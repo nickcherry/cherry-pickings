@@ -14,5 +14,4 @@ Rails.application.routes.draw do
 
   root controller: :home, action: :index
   get '/*path', controller: :home, action: :index
-
 end

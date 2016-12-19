@@ -24,13 +24,13 @@
     line-height: 1;
   }
 
-  .post-title, .post-published-at {
+  .title, .published-at {
     display: table-cell;
     padding-bottom: 2px;
     vertical-align: text-bottom;
   }
 
-  .post-title {
+  .title {
     margin: 0;
     width: 100%;
     a {
@@ -40,15 +40,15 @@
     }
   }
 
-  .post-published-at {
+  .published-at {
     display: none;
   }
 
   @include respond-to(sm) {
-    .post-title {
+    .title {
       width: 70%;
     }
-    .post-published-at {
+    .published-at {
       display: table-cell;
       font-size: .75em;
       text-align: right;
@@ -56,7 +56,7 @@
     }
   }
 
-  > .post-content {
+  > .content {
     backface-visibility: hidden;
     @include depth(post-content);
     padding: 0 $page-padding-horizontal;
@@ -98,12 +98,12 @@
     }
   }
 
-  .post-tags {
+  .tags {
     font-size: .75em;
     margin-top: 2em;
   }
 
-  .post-tag {
+  .tag {
     display: inline-block;
     font-weight: $medium-font-weight;
     margin-right: .5em;
@@ -113,28 +113,28 @@
   /* Slopes */
   /***************************************************/
 
-  .post-top-slope, .post-bottom-slope {
+  .top-slope, .bottom-slope {
     display: none;
   }
 
   &:nth-of-type(4n+1), &:nth-of-type(4n+3) {
-    .post-top-slope {
+    .top-slope {
       @extend .top-slope;
       @include depth(post-top-slope);
     }
-    .post-bottom-slope {
+    .bottom-slope {
       @extend .bottom-slope;
       @include depth(post-bottom-slope);
     }
   }
 
   &:nth-of-type(4n+1) {
-    .post-top-slope, .post-bottom-slope {
+    .top-slope, .bottom-slope {
       @extend .downward-slope;
     }
   }
   &:nth-of-type(4n+3) {
-    .post-top-slope, .post-bottom-slope {
+    .top-slope, .bottom-slope {
       @extend .upward-slope;
     }
   }
@@ -144,12 +144,12 @@
   /***************************************************/
 
   &:nth-of-type(2n+1) {
-    .post-content, .post-top-slope, .post-bottom-slope {
+    .content, .top-slope, .bottom-slope {
       background-color: $mine-shaft;
       color: white;
       .heading {
         border-bottom-color: rgba(white, .2);
-        .post-title a {
+        .title a {
           color: white;
         }
       }

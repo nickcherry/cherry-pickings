@@ -14,7 +14,5 @@ namespace :sitemaps do
     uri = URI('http://www.bing.com/webmaster/ping.aspx')
     uri.query = URI.encode_www_form(siteMap: SITEMAP_URL)
     Net::HTTP.get(uri)
-
   end
-
 end

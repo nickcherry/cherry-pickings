@@ -21,5 +21,4 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.order = 'random'
   config.raise_errors_for_deprecations!
-
 end
