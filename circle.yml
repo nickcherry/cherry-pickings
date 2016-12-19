@@ -1,8 +1,6 @@
 test:
   pre:
     - bower install
-  override:
-    - rspec
 
 deployment:
   production:
