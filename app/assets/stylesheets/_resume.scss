@@ -1,0 +1,83 @@
+.resume-wrapper {
+  @extend .posts;
+}
+
+.resume {
+  @extend .post;
+  .row {
+    border-bottom: 1px dotted rgba(white, .2);
+    font-size: 0;
+    margin-bottom: 15px;
+    overflow: auto;
+    padding-bottom: 15px;
+    &:first-of-type {
+      margin-top: 15px;
+    }
+    &.references {
+      border-bottom: none;
+    }
+  }
+  .col {
+    line-height: 1.5em;
+  }
+  .col.left {
+    color: $gallery;
+    font-size: 18px;
+    font-weight: $medium-font-weight;
+  }
+  .col.right {
+    font-size: 14px;
+  }
+  .technologies {
+    .category {
+      .name {
+        font-weight: $light-font-weight;
+      }
+      .technologies-list {
+        color: $gallery;
+        font-size: .75em;
+        &:before {
+          color: white;
+          content: '|';
+          margin-left: 4px;
+          margin-right: 6px;
+          opacity: .2;
+        }
+      }
+    }
+    .footnote {
+      color: white;
+      font-size: .65em;
+      opacity: .4;
+    }
+  }
+  .company {
+    .name {
+      font-weight: $light-font-weight
+    }
+    .range, .role {
+      color: $gallery;
+      font-size: .75em;
+      &:before {
+        color: white;
+        content: '|';
+        margin-left: 4px;
+        margin-right: 6px;
+        opacity: .2;
+      }
+    }
+  }
+  @include respond-to(md) {
+    .col.left, .col.right {
+      font-size: 16px;
+    }
+    .col.left {
+      float: left;
+      width: 25%;
+    }
+    .col.right {
+      float: right;
+      width: 75%;
+    }
+  }
+}

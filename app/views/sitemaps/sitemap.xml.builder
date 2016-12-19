@@ -16,6 +16,12 @@ xml.urlset(
     xml.priority 1
   end
 
+  xml.url do
+    xml.loc "#{ root_url }resume"
+    xml.changefreq 'monthly'
+    xml.priority 1
+  end
+
   @posts.each do |post|
     xml.url do
       xml.loc post_url(post)
@@ -29,5 +35,4 @@ xml.urlset(
       end
     end
   end
-
 end

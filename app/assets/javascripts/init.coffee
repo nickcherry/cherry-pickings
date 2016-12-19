@@ -49,9 +49,22 @@ angular.module 'cherryPickings', [
           controller: 'PostController'
           templateUrl: 'post.html'
 
+    .state 'root.resume',
+      url: '/resume'
+      views:
+        'main@':
+          controller: 'ResumeController'
+          templateUrl: 'resume.html'
+
   $urlRouterProvider.otherwise ($injector, $location) ->
     $state = $injector.get '$state'
     $state.go 'root.posts'
+
+  # Remove trailing slashes from URLs to make routing more resilient
+  $urlRouterProvider.rule ($injector, $location) ->
+    path = $location.path()
+    if path != '/' && path.slice(-1) == '/'
+      $location.replace().path(path.slice(0, -1))
 
 .run ($rootScope, Analytics, Browser, PageClass, Preload, Scroller) ->
   Scroller.toTop()
