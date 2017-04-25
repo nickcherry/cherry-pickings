@@ -51,19 +51,34 @@
       opacity: .4;
     }
   }
-  .company {
-    .name {
+  .job {
+    .company-name {
       font-weight: $light-font-weight
     }
-    .range, .role {
-      color: $gallery;
-      font-size: .75em;
+    .range, .role, .toggle {
       &:before {
         color: white;
         content: '|';
         margin-left: 4px;
         margin-right: 6px;
         opacity: .2;
+      }
+    }
+    .range, .role {
+      color: $gallery;
+      font-size: .75em;
+    }
+    .toggle {
+      border-bottom: none;
+      font-size: .65em;
+      padding: 3px 0;
+      user-select: none;
+      vertical-align: 0;
+    }
+    .secondary {
+      .content {
+        font-size: 0.75em;
+        margin: 0 20px 10px;
       }
     }
   }
