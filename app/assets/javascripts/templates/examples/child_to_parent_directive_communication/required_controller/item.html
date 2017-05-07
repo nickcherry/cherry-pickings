@@ -1,6 +1,6 @@
 <div class='item'>
   <button ng-click='addToCart(item)'>+</button>
-  <span class='price'>{{ item.price | currency }}</span>
+  <span class='price' ng-bind="::(item.price | currency)"></span>
   <ng-emoticons emoticons-data='item.icon'></ng-emoticons>
-  <span class='name'>{{ item.name }}</span>
+  <span class='name' ng-bind="::item.name"></span>
 </div>

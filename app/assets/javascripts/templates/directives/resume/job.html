@@ -1,8 +1,8 @@
 <div class="job" ng-class="{ expanded: expanded }">
   <div class="primary">
-    <span class="company-name" ng-bind="companyName"></span>
-    <span class="role" ng-bind="role"></span>
-    <time class="range" ng-bind="range"></time>
+    <span class="company-name" ng-bind="::companyName"></span>
+    <span class="role" ng-bind="::role"></span>
+    <time class="range" ng-bind="::range"></time>
     <!-- <a class="toggle" ng-click="toggle()" ng-bind="getToggleText()"></a> -->
   </div>
   <div class="secondary" ng-show="expanded">
