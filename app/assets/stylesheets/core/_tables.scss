@@ -1,0 +1,38 @@
+table {
+  margin: auto;
+}
+
+th, td {
+  border-bottom: 1px dotted rgba(white, .1);
+  border-right: 1px dotted rgba(white, .1);
+  padding: 0.25em 0.5em;
+}
+
+th:last-of-type, td:last-of-type {
+  border-right: none;
+}
+
+tr:last-of-type td {
+  border-bottom: none;
+}
+
+.data-table {
+  font-family: monospace;
+  font-size: 0.75em;
+}
+
+table.two-column {
+  &.squeeze {
+    th:first-of-type, td:first-of-type {
+      text-align: right;
+    }
+    th:last-of-type, td:last-of-type {
+      text-align: left;
+    }
+  }
+  &.equal-column-widths {
+    th, td {
+      width: 50%;
+    }
+  }
+}

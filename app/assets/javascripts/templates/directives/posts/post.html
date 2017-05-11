@@ -4,16 +4,14 @@
     <div class="heading">
       <div class="heading-inner-wrapper">
         <h2 class="title">
-          <a ui-sref="root.post({ id: post.id })">
-            {{ post.title }}
-          </a>
+          <a ui-sref="root.post({ id: post.id })" ng-bind-html="::post.title"></a>
         </h2>
         <time class="published-at">
-          {{ post.publishedAt | date:'mediumDate' }}
+          {{ ::(post.publishedAt | date:'mediumDate') }}
         </time>
       </div>
     </div>
-    <div class="body" ng-bind-html="post.bodyHtml"></div>
+    <div class="body" ng-bind-html="::post.bodyHtml"></div>
     <tags
       tags="post.tags">
     </tags>
