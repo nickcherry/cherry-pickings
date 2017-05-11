@@ -193,7 +193,7 @@ class BayesClassifier {
 module.exports = BayesClassifier;
 ```
 
-In the next snippet, we'll implement the `train(category, doc)` method and an `extractStems(doc)` helper. In addition to to handling tokenization and stemming, `extractStems` will filter out any <a target="_blank" href="https://en.wikipedia.org/wiki/Stop_words">stop words</a> encountered. In our tweet classifier, we won't be specifying any stop words (because I believe <a target="_blank" href="http://www.ranks.nl/stopwords">common terms</a> like "against", "myself", or "ought" can actually be useful for identify categories in this context), but if we choose to add them later, we'll be covered. After extracting stems from the given document, all our `train` method has to do is increment a few counts.
+In the next snippet, we'll implement the `train(category, doc)` method and an `extractStems(doc)` helper. In addition to to handling tokenization and stemming, `extractStems` will filter out any <a target="_blank" href="https://en.wikipedia.org/wiki/Stop_words">stop words</a> encountered. In our tweet classifier, we won't be specifying any stop words (because I believe <a target="_blank" href="http://www.ranks.nl/stopwords">common terms</a> like "against", "myself", or "ought" can actually be useful for identifying categories in this context), but if we choose to add them later, we'll be covered. After extracting stems from the given document, all our `train` method has to do is increment a few counts.
 
 ```javascript
 train(category, doc) {
