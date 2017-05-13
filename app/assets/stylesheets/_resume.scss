@@ -2,6 +2,7 @@
   .heading {
     border-bottom: 1px dotted rgba(white, .2);
   }
+
   .row {
     border-bottom: 1px dotted rgba(white, .2);
     font-size: 0;
@@ -15,6 +16,7 @@
       border-bottom: none;
     }
   }
+
   .col {
     line-height: 1.5em;
   }
@@ -26,46 +28,54 @@
   .col.right {
     font-size: 14px;
   }
-  .technologies {
-    .category {
-      .name {
-        font-weight: $light-font-weight;
-      }
-      .technologies-list {
-        color: $gallery;
-        font-size: .75em;
-        &:before {
-          color: white;
-          content: '|';
-          margin-left: 4px;
-          margin-right: 6px;
-          opacity: .2;
-        }
-      }
-    }
-    .footnote {
-      color: white;
-      font-size: .65em;
-      opacity: .4;
+
+  .category-name, .company-name {
+    display: block;
+    font-weight: $light-font-weight;
+    margin-top: .25em;
+    @include respond-to(sm) {
+      display: inline;
+      margin-top: 0;
     }
   }
-  .job {
-    .company-name {
-      font-weight: $light-font-weight
+
+  .technologies-list,
+  .job-range,
+  .job-role,
+  .job-toggle {
+    color: $gallery;
+    display: inline-block;
+    font-size: .75em;
+    margin-bottom: 1em;
+    &:before {
+      color: white;
+      content: '|';
+      margin-left: 4px;
+      margin-right: 6px;
+      opacity: .2;
     }
-    .range, .role, .toggle {
-      &:before {
-        color: white;
+    @include respond-to(sm) {
+      margin-bottom: 0;
+    }
+  }
+
+  .technologies-list,
+  .job-role {
+    &:before {
+      content: none;
+      @include respond-to(sm) {
         content: '|';
-        margin-left: 4px;
-        margin-right: 6px;
-        opacity: .2;
       }
     }
-    .range, .role {
-      color: $gallery;
-      font-size: .75em;
-    }
+  }
+
+  .footnote {
+    color: white;
+    font-size: .65em;
+    opacity: .4;
+  }
+
+  .job {
     .toggle {
       border-bottom: none;
       font-size: .65em;
