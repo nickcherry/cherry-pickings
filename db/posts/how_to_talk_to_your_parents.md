@@ -1,6 +1,6 @@
 ---
 public_id: how-to-talk-to-your-parents-a-lesson-in-directive-communication
-title: How to Talk to Your Parents (A Lesson in Directive Communication)
+title: 'How to Talk to Your Parents: A Lesson in Directive Communication'
 tags: [javascript, angular]
 published: true
 ---

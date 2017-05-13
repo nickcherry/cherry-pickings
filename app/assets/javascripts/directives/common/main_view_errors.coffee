@@ -3,8 +3,5 @@ angular.module('cherryPickings').directive 'mainViewErrors', ->
   directive =
     replace: true
     restrict: 'E'
-    scope:
-      errors: '='
-      retry: '&'
-      retryText: '@'
+    scope: true
     templateUrl: 'directives/common/main_view_errors.html'

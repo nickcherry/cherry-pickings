@@ -1,24 +1,6 @@
-<section class="main-view"
-  ng-class="{ initialized: initialized,
-              errors: errors.length,
-              empty: posts.length == 0 }">
-
-  <loader class="main-view-loader"></loader>
-
-  <div class="main-view-empty">
-    <div class="top-slope downward-slope"></div>
-    <div class="bottom-slope upward-slope"></div>
-    <span class="content">Coming soon!</span>
-  </div>
-
-  <main-view-errors
-    errors="errors"
-    retry="init()">
-  </main-view-errors>
-
-  <div class="main-view-content">
-    <posts
-      posts="posts">
-    </posts>
-  </div>
+<main-view>
+  <main-view-empty>
+    Coming soon!
+  </main-view-empty>
+  <list-post ng-repeat="post in posts" post="post"></list-post>
 </section>

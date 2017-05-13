@@ -1,0 +1,110 @@
+.conversation {
+  .message {
+    overflow: auto;
+    position: relative;
+    &.left .message-content {
+      box-shadow: #{$conversation-message-thickness} #{-$conversation-message-thickness + 1px} 0 0 rgba($persian-green, .7); // give depth to message
+      float: left;
+      margin-left: $conversation-message-triangle-width; // make room for triangle, so overflow auto doesn't cut it off
+    }
+    &.right .message-content {
+      /* The box shadow gives message depth. */
+      box-shadow: #{-$conversation-message-thickness} #{-$conversation-message-thickness + 1px} 0 0 rgba($ocean-spray, .7); // give depth to message
+      float: right;
+      margin-right: $conversation-message-triangle-width; // make room for triangle, so overflow auto doesn't cut it off
+    }
+  }
+  .message-content {
+    background-color: $darkened-mine-shaft;
+    border: 1px solid $emperor;
+    border-radius: 20px;
+    display: inline-block;
+    max-width: 75%;
+    position: relative;
+    padding: 0.65em 1em;
+    word-wrap: break-word;
+  }
+  .message:first-child .message-content {
+    margin-top: $conversation-message-thickness; // Make room for depth of first message.
+  }
+  .message.left + .message.left,
+  .message.right + .message.right {
+    .message-content {
+      margin-top: $conversation-message-thickness + 6px; // Apply smaller margins between multiple simultaneous messages from the same person.
+    }
+  }
+
+  .message.left + .message.right,
+  .message.right:first-child,
+  .message.right + .message.left,
+  .message.left:first-child {
+    .message-content {
+      margin-top: $conversation-message-thickness + 23px; // Apply larger margins between messages from different people.
+      &:after {
+        color: $gallery;
+        font-size: .5em;
+        font-variant: small-caps;
+        font-weight: $medium-font-weight;
+        left: 1.01rem;
+        opacity: 0.3;
+        position: absolute;
+        top: -.23rem;
+      }
+    }
+  }
+
+  .message.left + .message.right,
+  .message.right:first-child {
+    .message-content:after {
+      content: 'Me'; // Denote the speaker (only for the first message of a group).
+    }
+  }
+  .message.right + .message.left,
+  .message.left:first-child {
+    .message-content:after {
+      content: 'You'; // Denote the speaker (only for the first message of a group).
+    }
+  }
+
+  // Define general styles for the outer (i.e. visible) triangle.
+  .message:before {
+    border-bottom: $conversation-message-triangle-width solid transparent;
+    border-top: $conversation-message-triangle-width solid transparent;
+    content: ' ';
+    height: 0;
+    position: absolute;
+    bottom: 20px;
+    width: 0;
+  }
+
+  // Define general styles for the inner triangle, which blends into the message body.
+  .message:after {
+    border-bottom: $conversation-message-triangle-width solid transparent;
+    border-top: $conversation-message-triangle-width solid transparent;
+    content: ' ';
+    height: 0;
+    position: absolute;
+    bottom: 20px;
+    width: 0;
+  }
+  .message.left:before {
+    border-left: $conversation-message-triangle-width solid transparent;
+    border-right: $conversation-message-triangle-width solid $emperor;
+    left: -$conversation-message-triangle-width + 1px;
+  }
+  .message.right:before {
+    border-left: $conversation-message-triangle-width solid $emperor;
+    border-right: $conversation-message-triangle-width solid transparent;
+    right: -$conversation-message-triangle-width + 1px;
+  }
+  .message.left:after {
+    border-left: $conversation-message-triangle-width solid transparent;
+    border-right: $conversation-message-triangle-width solid $darkened-mine-shaft;
+    left: -$conversation-message-triangle-width + 2px;
+  }
+  .message.right:after {
+    border-left: $conversation-message-triangle-width solid $darkened-mine-shaft;
+    border-right: $conversation-message-triangle-width solid transparent;
+    right: -$conversation-message-triangle-width + 2px;
+  }
+}

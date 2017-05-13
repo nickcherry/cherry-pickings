@@ -1,7 +1,7 @@
 ---
 public_id: token-authentication-with-angular-and-rails
 title: Token Authentication with Angular and Rails
-tags: [javascript, angular, ruby, nginx, authentication]
+tags: [javascript, angular, rails, nginx]
 published: true
 ---
 

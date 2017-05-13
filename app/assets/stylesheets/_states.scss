@@ -16,7 +16,7 @@ html:not(.admin) {
 }
 
 
-.main-view {
+#main-view {
 
   /*********************************************************/
   /* MainView:Transitions */
@@ -38,15 +38,15 @@ html:not(.admin) {
   $loader-duration: .3s;
   $loader-ease: ease-out;
 
-  .main-view-content {
+  #main-view-content {
     @include fade-transitions($content-duration, $content-ease, $content-delay);
   }
 
-  .main-view-empty {
+  #main-view-empty {
     @include fade-transitions($empty-duration, $empty-ease, $empty-delay);
   }
 
-  .main-view-errors {
+  #main-view-errors {
     @include fade-transitions($errors-duration, $errors-ease, $errors-delay);
   }
 
@@ -54,14 +54,14 @@ html:not(.admin) {
   /* MainView:Pre-Initialized */
   /*********************************************************/
 
-  .main-view-loader {
+  #main-view-loader {
     @include faded-in();
     transform: scale(1);
   }
 
-  .main-view-content,
-  .main-view-empty,
-  .main-view-errors {
+  #main-view-content,
+  #main-view-empty,
+  #main-view-errors {
     @include faded-out();
   }
 
@@ -71,7 +71,7 @@ html:not(.admin) {
   /*********************************************************/
 
   &.initialized {
-    .main-view-content {
+    #main-view-content {
       @include faded-in();
     }
   }
@@ -82,7 +82,7 @@ html:not(.admin) {
   /*********************************************************/
 
   &.errors {
-    .main-view-errors {
+    #main-view-errors {
       @include faded-in();
     }
   }
@@ -93,7 +93,7 @@ html:not(.admin) {
   /*********************************************************/
 
   &.empty {
-    .main-view-empty {
+    #main-view-empty {
       @include faded-in();
     }
   }
@@ -104,7 +104,7 @@ html:not(.admin) {
   /*********************************************************/
 
   &.initialized, &.errors {
-    .main-view-loader {
+    #main-view-loader {
       @include faded-out();
       @include fade-transitions($loader-duration, $loader-ease, $loader-delay, "transform #{ $loader-duration } #{ $loader-ease } #{ $loader-delay }");
       transform: scale(1.35);

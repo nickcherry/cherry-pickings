@@ -1,9 +1,7 @@
-.resume-wrapper {
-  @extend .posts;
-}
-
 .resume {
-  @extend .post;
+  .heading {
+    border-bottom: 1px dotted rgba(white, .2);
+  }
   .row {
     border-bottom: 1px dotted rgba(white, .2);
     font-size: 0;

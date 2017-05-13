@@ -1,16 +1,3 @@
-<section class="main-view"
-  ng-class="{ initialized: initialized,
-              errors: errors.length }">
-
-  <loader class="main-view-loader"></loader>
-
-  <main-view-errors
-    errors="errors"
-    retry="init()">
-  </main-view-errors>
-
-  <div class="main-view-content">
-    <posts posts="[post]"></posts>
-  </div>
-
-</section>
+<main-view>
+  <post post="post"></post>
+</main-view>

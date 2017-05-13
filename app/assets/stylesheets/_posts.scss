@@ -1,19 +1,13 @@
-.posts {
-  margin-top: -145px;
-  overflow: hidden;
-  padding-top: 140px;
-  .post {
-    margin-bottom: 140px;
+.list-post, .post {
+  a {
+    border-bottom: none;
+    color: $default-color-for-dark-bg;
+    padding-bottom: 0;
+    &:hover {
+      color: $link-hover-color;
+    }
   }
-}
-
-.post {
-  margin-bottom: 140px;
-  padding-top: 18px;
-  position: relative;
-
   .heading {
-    border-bottom: 1px dotted rgba($default-color, .8);
     display: table;
     table-layout: fixed;
     width: 100%;
@@ -21,7 +15,6 @@
 
   .heading-inner-wrapper {
     display: table-row;
-    line-height: 1;
   }
 
   .title, .published-at {
@@ -29,20 +22,13 @@
     padding-bottom: 2px;
     vertical-align: text-bottom;
   }
-
   .title {
     margin: 0;
     width: 100%;
-    a {
-      border-bottom: none;
-      color: $default-color;
-      padding-bottom: 0;
-    }
     .series {
-      font-size: 0.5em;
+      font-size: .5em;
     }
   }
-
   .published-at {
     display: none;
   }
@@ -58,252 +44,88 @@
       width: 30%;
     }
   }
-
-  > .content {
-    backface-visibility: hidden;
-    @include depth(post-content);
-    padding: 0 $page-padding-horizontal;
-    position: relative;
-    transform: translateZ(1000px); /* Safari bug fix http://stackoverflow.com/questions/18146511/bug-in-css3-rotatey-transition-on-safari */
-    @include respond-to(md) {
-      padding: 0 $page-padding-horizontal-md;
-    }
-
-    figure {
-      margin: 2em auto;
-      text-align: center;
-      figcaption {
-        margin-bottom: .5em;
-        text-align: center;
-      }
-      a {
-        @extend a.no-underline;
-      }
-      .image-wrapper, .iframe-wrapper, .embedded-content-wrapper {
-        display: block;
-        position: relative;
-        &:before {
-          border-top: 1px dotted rgba(white, .1);
-          content: '';
-          display: block;
-          position: absolute;
-          top: 45%;
-          width: 100%;
-        }
-      }
-      img:not(.emoji) {
-        border-radius: 4px;
-        box-shadow: 0 0 6px 0 rgba(black, .15);
-        display: inline-block;
-        max-width: 100%;
-        position: relative;
-      }
-      twitterwidget {
-        margin: auto;
-      }
-    }
-    .tiny-parenthetical {
-      font-size: 0.6em;
-      opacity: 0.7;
-    }
-  }
-
   .tags {
-    font-size: .75em;
-    margin-top: 2em;
+    line-height: 1;
   }
-
   .tag {
     display: inline-block;
-    font-weight: $medium-font-weight;
     margin-right: .5em;
   }
+}
 
-  .conversation {
-    .message {
-      overflow: auto;
-      position: relative;
-      &.left .message-content {
-        box-shadow: #{$conversation-message-thickness} #{-$conversation-message-thickness + 1px} 0 0 rgba($persian-green, .7); // give depth to message
-        float: left;
-        margin-left: $conversation-message-triangle-width; // make room for triangle, so overflow auto doesn't cut it off
-      }
-      &.right .message-content {
-        /* Box shadow gives message depth */
-        box-shadow: #{-$conversation-message-thickness} #{-$conversation-message-thickness + 1px} 0 0 rgba($ocean-spray, .7); // give depth to message
-        float: right;
-        margin-right: $conversation-message-triangle-width; // make room for triangle, so overflow auto doesn't cut it off
-      }
-    }
-    .message-content {
-      background-color: $darkened-mine-shaft;
-      border: 1px solid $emperor;
-      border-radius: 20px;
-      display: inline-block;
-      max-width: 75%;
-      position: relative;
-      padding: 0.65em 1em;
-      word-wrap: break-word;
-    }
-    .message:first-child .message-content {
-      margin-top: $conversation-message-thickness; // make room for depth of first message
-    }
-    .message.left + .message.left,
-    .message.right + .message.right {
-      .message-content {
-        margin-top: $conversation-message-thickness + 6px; // apply smaller margins between multiple simultaneous messages from the same person
-      }
-    }
-
-    .message.left + .message.right,
-    .message.right:first-child,
-    .message.right + .message.left,
-    .message.left:first-child {
-      .message-content {
-        margin-top: $conversation-message-thickness + 23px; // apply larger margins between messages from different people
-        &:after {
-          color: $gallery;
-          font-size: .5em;
-          font-variant: small-caps;
-          font-weight: $medium-font-weight;
-          left: 1.01rem;
-          opacity: 0.3;
-          position: absolute;
-          top: -.23rem;
-        }
-      }
-    }
-
-    .message.left + .message.right,
-    .message.right:first-child {
-      .message-content:after {
-        content: 'Me'; // denote the speaker (only for the first message of a group)
-      }
-    }
-    .message.right + .message.left,
-    .message.left:first-child {
-      .message-content:after {
-        content: 'You'; // denote the speaker (only for the first message of a group)
-      }
-    }
-
-    // define general styles for the outer (i.e. visible) triangle
-    .message:before {
-      border-bottom: $conversation-message-triangle-width solid transparent;
-      border-top: $conversation-message-triangle-width solid transparent;
-      content: ' ';
-      height: 0;
-      position: absolute;
-      bottom: 20px;
-      width: 0;
-    }
-
-    // define general styles for the inner triangle, which blends into the message body
-    .message:after {
-      border-bottom: $conversation-message-triangle-width solid transparent;
-      border-top: $conversation-message-triangle-width solid transparent;
-      content: ' ';
-      height: 0;
-      position: absolute;
-      bottom: 20px;
-      width: 0;
-    }
-    .message.left:before {
-      border-left: $conversation-message-triangle-width solid transparent;
-      border-right: $conversation-message-triangle-width solid $emperor;
-      left: -$conversation-message-triangle-width + 1px;
-    }
-    .message.right:before {
-      border-left: $conversation-message-triangle-width solid $emperor;
-      border-right: $conversation-message-triangle-width solid transparent;
-      right: -$conversation-message-triangle-width + 1px;
-    }
-    .message.left:after {
-      border-left: $conversation-message-triangle-width solid transparent;
-      border-right: $conversation-message-triangle-width solid $darkened-mine-shaft;
-      left: -$conversation-message-triangle-width + 2px;
-    }
-    .message.right:after {
-      border-left: $conversation-message-triangle-width solid $darkened-mine-shaft;
-      border-right: $conversation-message-triangle-width solid transparent;
-      right: -$conversation-message-triangle-width + 2px;
-    }
+.list-post {
+  border-bottom: 1px dotted rgba(white, .2);
+  padding: 1em 0;
+  &:first-of-type {
+    padding-top: 0;
   }
-
-  /***************************************************/
-  /* Slopes */
-  /***************************************************/
-
-  .top-slope, .bottom-slope {
+  &:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .title {
+    font-size: 1.1em;
+  }
+  a {
+    display: block;
+  }
+  .tags {
+    color: $dusty-grey;
     display: none;
+    font-size: .65em;
   }
-
-  &:nth-of-type(4n+1), &:nth-of-type(4n+3) {
-    .top-slope {
-      @extend .top-slope;
-      @include depth(post-top-slope);
-    }
-    .bottom-slope {
-      @extend .bottom-slope;
-      @include depth(post-bottom-slope);
+  @include respond-to(sm) {
+    .tags {
+      display: block;
     }
   }
+}
 
-  &:nth-of-type(4n+1) {
-    .top-slope, .bottom-slope {
-      @extend .downward-slope;
+.post {
+  position: relative;
+  .heading {
+    border-bottom: 1px dotted rgba(white, .2);
+  }
+  figure {
+    margin: 2em auto;
+    text-align: center;
+    figcaption {
+      margin-bottom: .5em;
+      text-align: center;
+    }
+    a {
+      @extend a.no-underline;
+    }
+    .image-wrapper, .iframe-wrapper, .embedded-content-wrapper {
+      display: block;
+      position: relative;
+      &:before {
+        border-top: 1px dotted rgba(white, .1);
+        content: '';
+        display: block;
+        position: absolute;
+        top: 45%;
+        width: 100%;
+      }
+    }
+    img:not(.emoji) {
+      border-radius: 4px;
+      box-shadow: 0 0 6px 0 rgba(black, .15);
+      display: inline-block;
+      max-width: 100%;
+      position: relative;
+    }
+    twitterwidget {
+      margin: auto;
     }
   }
-  &:nth-of-type(4n+3) {
-    .top-slope, .bottom-slope {
-      @extend .upward-slope;
-    }
+  .tiny-parenthetical {
+    font-size: 0.6em;
+    opacity: 0.7;
   }
-
-  /***************************************************/
-  /* Colors */
-  /***************************************************/
-
-  &:nth-of-type(2n+1) {
-    .content, .top-slope, .bottom-slope {
-      background-color: $mine-shaft;
-      color: white;
-      .heading {
-        border-bottom-color: rgba(white, .2);
-        .title a {
-          color: white;
-        }
-      }
-    }
-  }
-
-  &:nth-of-type(2n+0) {
-    @extend .dark-list-items;
-    @extend .more-opaque-code;
-    @extend .dark-hr;
-
-    font-weight: $light-font-weight;
-
-    figure {
-      .image-wrapper, .iframe-wrapper, .embedded-content-wrapper {
-        &:before {
-          border-top-color: rgba($mine-shaft, .4);
-        }
-      }
-    }
-    th, td {
-      border-color: rgba($mine-shaft, .4);
-    }
-    .conversation {
-      .message .message-content {
-        background-color: white;
-      }
-      .message.left:after {
-        border-right: $conversation-message-triangle-width solid white;
-      }
-      .message.right:after {
-        border-left: $conversation-message-triangle-width solid white;
-      }
-    }
+  .tags {
+    font-size: .75em;
+    font-weight: $medium-font-weight;
+    margin-top: 2em;
   }
 }

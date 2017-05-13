@@ -1,5 +1,6 @@
-.slope {
+%slope {
   backface-visibility: hidden;
+  background-color: $mine-shaft;
   border: 1px solid transparent;
   box-shadow: 0 0 4px 1px rgba(black, .2);
   display: block;
@@ -9,33 +10,17 @@
   width: 100%;
 }
 
-.top-slope {
-  @extend .slope;
-  top: -70px;
-}
-
-.bottom-slope {
-  @extend .slope;
-  bottom: -78px;
-}
-
-.downward-slope {
+%downward-slope {
   transform: rotate3d(1,1,0, 32deg) scaleX(1.5);
 }
 
-.upward-slope {
+%upward-slope {
   transform: rotate3d(1,-1,0, 23deg) scaleX(1.5);
 }
 
 html.firefox body #wrapper {
   /* Fixes jagged edges in FF */
-  .top-slope, .bottom-slope {
-    box-shadow: none;
-  }
-  .top-slope {
-    border-top: 1px solid white;
-  }
-  .bottom-slope {
-    border-bottom: 1px solid white;
-  }
+  #top-slope, #bottom-slope { box-shadow: none; }
+  #top-slope { border-top: 1px solid white; }
+  #bottom-slope { border-bottom: 1px solid white; }
 }
