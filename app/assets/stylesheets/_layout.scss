@@ -11,7 +11,7 @@ body {
   @extend %slope;
   @extend %downward-slope;
   @include depth(top-slope);
-  margin-top: -75px;
+  margin-top: -71px;
 }
 
 #main-view {
@@ -28,14 +28,14 @@ body {
 
 #main-view-content {
   margin-top: -59px;
-  min-height: 230px;
+  min-height: 330px;
 }
 
 #bottom-slope {
   @extend %slope;
   @extend %downward-slope;
   @include depth(bottom-slope);
-  margin-top: -120px;
+  margin-top: -150px;
 }
 
 footer {

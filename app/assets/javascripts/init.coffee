@@ -51,6 +51,7 @@ angular.module 'cherryPickings', [
 
     .state 'root.resume',
       url: '/resume'
+      pageClass: 'resume'
       views:
         'main@':
           controller: 'ResumeController'
