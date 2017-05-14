@@ -1,0 +1,23 @@
+.katex-wrapper {
+  font-size: 0.75em;
+  text-align: center;
+  &.inline {
+    display: inline-block;
+    .katex {
+      overflow: visible;
+      padding: 0;
+    }
+  }
+  @include respond-to(sm) {
+    font-size: 1em;
+  }
+}
+
+.katex {
+  box-shadow: 0 0 2px 0 rgba(black, .1);
+  color: $dusty-grey; //$ocean-spray;
+  display: inline-block;
+  font-size: .85em;
+  overflow: auto;
+  padding: .15em .5em;
+}

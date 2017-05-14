@@ -1,6 +1,8 @@
 @import 'config';
 @import 'core';
 
+@import '../../../bower_components/katex/dist/katex.min';
+
 @import 'conversations';
 @import 'empty';
 @import 'errors';

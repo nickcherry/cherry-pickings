@@ -1,6 +1,7 @@
 #= require bowser
 #= require humps
 #= require jquery
+#= require katex
 #= require lodash
 
 #= require angular

@@ -102,7 +102,7 @@
     a {
       @extend a.no-underline;
     }
-    .image-wrapper, .iframe-wrapper, .embedded-content-wrapper {
+    .embedded-content-wrapper, .image-wrapper, .iframe-wrapper, > .katex-wrapper {
       display: block;
       position: relative;
       &:before {
@@ -123,6 +123,16 @@
     }
     twitterwidget {
       margin: auto;
+    }
+    &.katex-figure {
+      figcaption {
+        text-align: left;
+      }
+    }
+    > .katex-wrapper .katex {
+      background-color: $mine-shaft;
+      overflow: visible;
+      position: relative;
     }
   }
   .tiny-parenthetical {
