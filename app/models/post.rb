@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   before_save :update_published_at
 
   has_many :post_tags
-  has_many :tags, through: :post_tags
+  has_many :tags, -> { order(:name) }, through: :post_tags
 
   scope :published, -> { where(published: true) }
   scope :recent, -> { order(published_at: :desc) }
