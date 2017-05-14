@@ -1,1 +1,2 @@
-angular.module('cherryPickings').controller 'ResumeController', ->
+angular.module('cherryPickings').controller 'ResumeController', ($scope) ->
+  $scope.initialized = true

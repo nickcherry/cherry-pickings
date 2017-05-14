@@ -1,0 +1,11 @@
+<section id="main-view" ng-class="{
+  initialized: initialized,
+  errors: errors.length,
+  empty: isEmpty() }">
+
+  <loader id="main-view-loader"></loader>
+  <main-view-errors></main-view-errors>
+  <main-view-content>
+    <div ng-transclude></div>
+  </main-view-content>
+</section>

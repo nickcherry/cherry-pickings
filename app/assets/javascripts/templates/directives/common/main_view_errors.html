@@ -1,8 +1,6 @@
-<div class="main-view-errors">
-  <div class="main-view-error" ng-repeat="error in errors">
-    {{ error }}
-  </div>
-  <a ng-if="retry && errors.length" ng-click="retry()" class="retry">
+<div id="main-view-errors">
+  <div class="main-view-error" ng-repeat="error in errors" ng-bind="error"></div>
+  <a ng-if="init && errors.length" ng-click="init()" class="retry">
     {{ retryText || 'Try Again' }}
   </a>
 </div>

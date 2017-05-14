@@ -8,4 +8,7 @@ angular.module('cherryPickings').controller 'PostsController', ($scope, PostReso
     , ->
       $scope.errors = ['There was a problem fetching the posts.']
 
+  $scope.isEmpty = ->
+    $scope.posts && $scope.posts.length == 0
+
   $scope.init()

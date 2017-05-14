@@ -20,7 +20,7 @@
   }
 
   .item {
-    border-bottom: 1px dotted rgba($default-color, .3);
+    border-bottom: 1px dotted rgba($default-color-for-light-bg, .3);
     min-height: 2em;
     padding: 2px 4px;
     button, .price {

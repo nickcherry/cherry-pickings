@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html ng-app="cherryPickings"
   scroll-on-state-change
-  ng-class="{ 'app-initialized': $root.appInitialized,
+  ng-class="[$root.pageClass ? $root.pageClass + '-page' : '', {
+              'app-initialized': $root.appInitialized,
               'android': $root.browser.android,
               'chrome': $root.browser.chrome,
               'firefox': $root.browser.firefox,
               'ios': $root.browser.ios,
               'mobile': $root.browser.mobile,
-              'safari': $root.browser.safari }">
+              'safari': $root.browser.safari }]">
 
   <head>
 
@@ -29,7 +30,9 @@ gathered and documented by Nick Cherry">
   </head>
   <body>
     <header id="header" ui-view="header"></header>
+    <div id="top-slope"></div>
     <div id="wrapper" ui-view="main"></div>
+    <div id="bottom-slope"></div>
     <footer id="footer" ui-view="footer"></footer>
   </body>
 

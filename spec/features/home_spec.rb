@@ -14,24 +14,21 @@ describe 'Homepage', type: :feature, js: true do
 
   it 'renders the posts, sorted by most recently published' do
     def find_post(child)
-      page.find(".post:nth-of-type(#{ child })")
+      page.find(".list-post:nth-of-type(#{ child })")
     end
 
     within find_post(1) do
       expect(page).to have_content '你好，世界'
-      expect(page).to have_content 'Lorem 中国um'
       expect(page).to have_content '#chinese'
     end
 
     within find_post(2) do
       expect(page).to have_content 'Hello World'
-      expect(page).to have_content 'Lorem Englishum'
       expect(page).to have_content '#english'
     end
 
     within find_post(3) do
       expect(page).to have_content 'Hola Mundo'
-      expect(page).to have_content 'Lorem Españolum'
       expect(page).to have_content '#spanish'
     end
   end

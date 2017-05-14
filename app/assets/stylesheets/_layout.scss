@@ -7,9 +7,35 @@ body {
   margin: 0 0 $footer-height;
 }
 
-#wrapper {
-  margin-top: -20px;
+#top-slope {
+  @extend %slope;
+  @extend %downward-slope;
+  @include depth(top-slope);
+  margin-top: -71px;
+}
+
+#main-view {
+  background: $mine-shaft;
+  color: $default-color-for-dark-bg;
+  @include depth(main-view);
+  margin-top: 70px;
+  padding: 0 $page-padding-horizontal;
   position: relative;
+  @include respond-to(md) {
+    padding: 0 $page-padding-horizontal-md;
+  }
+}
+
+#main-view-content {
+  margin-top: -59px;
+  min-height: 330px;
+}
+
+#bottom-slope {
+  @extend %slope;
+  @extend %downward-slope;
+  @include depth(bottom-slope);
+  margin-top: -150px;
 }
 
 footer {

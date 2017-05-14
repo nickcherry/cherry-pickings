@@ -4,7 +4,6 @@ title: "Naive Bayes <span class='series'>(Machine Learning for Mere Mortals)</sp
 tags:
   - machine_learning
   - classification
-  - naive_bayes
 published: true
 ---
 

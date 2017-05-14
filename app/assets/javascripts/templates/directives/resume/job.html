@@ -1,11 +1,11 @@
 <div class="job" ng-class="{ expanded: expanded }">
-  <div class="primary">
+  <div class="job-primary-info">
     <span class="company-name" ng-bind="::companyName"></span>
-    <span class="role" ng-bind="::role"></span>
-    <time class="range" ng-bind="::range"></time>
-    <!-- <a class="toggle" ng-click="toggle()" ng-bind="getToggleText()"></a> -->
+    <span class="job-role" ng-bind="::role"></span>
+    <time class="job-range" ng-bind="::range"></time>
+    <!-- <a class="job-toggle" ng-click="toggle()" ng-bind="getToggleText()"></a> -->
   </div>
-  <div class="secondary" ng-show="expanded">
-    <div class="content" ng-transclude></div>
+  <div class="job-secondary-info" ng-show="expanded">
+    <div class="job-secondary-info-content" ng-transclude></div>
   </div>
 </div>
