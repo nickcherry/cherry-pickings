@@ -18,7 +18,7 @@ body {
   background: $mine-shaft;
   color: $default-color-for-dark-bg;
   @include depth(main-view);
-  margin-top: 70px;
+  margin: 70px auto 170px;
   padding: 0 $page-padding-horizontal;
   position: relative;
   @include respond-to(md) {
@@ -35,7 +35,7 @@ body {
   @extend %slope;
   @extend %downward-slope;
   @include depth(bottom-slope);
-  margin-top: -150px;
+  margin-top: -320px;
 }
 
 footer {
