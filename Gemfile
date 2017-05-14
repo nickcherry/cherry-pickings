@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.3.0'
 
 gem 'angular-rails-templates', '~> 0.2.0'
 gem 'autoprefixer-rails', '~> 6.0.3'
@@ -35,8 +35,8 @@ group :test do
   gem 'database_cleaner', '~> 1.5.0'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'guard-rspec', '~> 4.6.4'
-  gem 'poltergeist', '~> 1.7.0'
-  gem 'rspec-rails', '~> 3.3.3'
+  gem 'rspec-rails', '~> 3.6.0'
+  gem 'poltergeist', '~> 1.15.0'
   gem 'shoulda-matchers', '~> 3.0.0'
   gem 'terminal-notifier-guard', '~> 1.6.4'
   gem 'webmock', '~> 1.22.3'
