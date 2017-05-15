@@ -102,7 +102,11 @@
     a {
       @extend a.no-underline;
     }
-    .embedded-content-wrapper, .image-wrapper, .iframe-wrapper, > .katex-wrapper {
+    .chart-wrapper,
+    .embedded-content-wrapper,
+    .image-wrapper,
+    .iframe-wrapper,
+    > .katex-wrapper {
       display: block;
       position: relative;
       &:before {

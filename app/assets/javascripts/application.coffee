@@ -4,6 +4,8 @@
 #= require katex
 #= require lodash
 
+#= require plotly-basic
+
 #= require angular
 #= require angular-rails-templates
 #= require angular-ui-router

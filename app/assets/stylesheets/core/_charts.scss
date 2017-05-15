@@ -1,0 +1,13 @@
+.chart {
+  background-color: $white-smoke;
+  border-radius: 4px;
+  box-shadow: 0 0 6px 0 rgba(black, .15);
+  display: inline-block;
+  margin: auto;
+  pointer-events: none;
+  position: relative;
+  user-select: none;
+  .cursor-pointer {
+    cursor: auto !important;
+  }
+}
