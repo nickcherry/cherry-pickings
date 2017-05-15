@@ -67,10 +67,11 @@ angular.module 'cherryPickings', [
     if path != '/' && path.slice(-1) == '/'
       $location.replace().path(path.slice(0, -1))
 
-.run ($rootScope, Analytics, Browser, PageClass, Preload, Scroller) ->
+.run ($rootScope, Analytics, Browser, PageClass, Preload, Scroller, StateChangeNotifier) ->
   Scroller.toTop()
   Analytics.init()
   Browser.init()
   PageClass.init()
   Preload.init()
+  StateChangeNotifier.init()
   $rootScope.appInitialized = true
