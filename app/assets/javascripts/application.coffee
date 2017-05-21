@@ -1,7 +1,7 @@
 #= require bowser
 #= require humps
 #= require jquery
-#= require katex
+#= require katex.min.js
 #= require lodash
 
 #= require plotly-basic
