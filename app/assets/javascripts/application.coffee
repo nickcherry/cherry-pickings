@@ -1,7 +1,10 @@
 #= require bowser
 #= require humps
 #= require jquery
+#= require katex
 #= require lodash
+
+#= require plotly-basic
 
 #= require angular
 #= require angular-rails-templates

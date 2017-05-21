@@ -1,8 +1,9 @@
 <main-view>
-  <main-view-empty>
-    Coming soon!
-  </main-view-empty>
+  <main-view-empty>Coming soon!</main-view-empty>
+
+  <filtering-by tag="tag" ng-if="tag"></filtering-by>
+
   <div class="posts">
-    <list-post ng-repeat="post in posts" post="post"></list-post>
+    <list-post ng-repeat="post in posts | filterByTag:tag" post="post"></list-post>
   </div>
 </section>

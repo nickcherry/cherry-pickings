@@ -1,5 +1,5 @@
 a {
-  border-bottom: 1px solid;
+  @extend a.link-underline;
   color: $link-color;
   cursor: pointer;
   text-decoration: none;
@@ -17,4 +17,8 @@ a {
 
 a.no-underline {
   border-bottom: none;
+}
+
+a.link-underline {
+  border-bottom: 1px solid;
 }

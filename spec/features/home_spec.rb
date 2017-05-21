@@ -8,26 +8,34 @@ describe 'Homepage', type: :feature, js: true do
     visit '/'
   end
 
+  def find_post_by_index(child)
+    page.find(".list-post:nth-of-type(#{ child })")
+  end
+
+  def find_post_by_title(title)
+    page.find('.list-post', text: title)
+  end
+
+  def clear_post_filters
+    page.find('.filtering-by .clear').click
+  end
+
   it 'renders the navigation' do
     expect(page).to have_content 'Cherry Pickings'
   end
 
   it 'renders the posts, sorted by most recently published' do
-    def find_post(child)
-      page.find(".list-post:nth-of-type(#{ child })")
-    end
-
-    within find_post(1) do
+    within find_post_by_index(1) do
       expect(page).to have_content '你好，世界'
       expect(page).to have_content '#chinese'
     end
 
-    within find_post(2) do
+    within find_post_by_index(2) do
       expect(page).to have_content 'Hello World'
       expect(page).to have_content '#english'
     end
 
-    within find_post(3) do
+    within find_post_by_index(3) do
       expect(page).to have_content 'Hola Mundo'
       expect(page).to have_content '#spanish'
     end
@@ -38,5 +46,26 @@ describe 'Homepage', type: :feature, js: true do
     expect(current_path).to eq('/blog/hello-world')
     expect(page).to have_content 'Lorem Englishum'
     expect(page).to have_content '#english'
+  end
+
+  it 'filters by tag' do
+    expect(page).to have_content 'Hello World'
+    expect(page).to have_content 'Hola Mundo'
+    within find_post_by_title('Hola Mundo') do
+      click_link '#spanish'
+    end
+    expect(current_qs['tag']).to include 'spanish'
+    expect(page).to have_content 'Filtering by #spanish'
+    expect(page).to have_content 'Hola Mundo'
+    expect(page).to_not have_content 'Hello World'
+    clear_post_filters
+    expect(page).to have_content 'Hello World'
+    click_link 'Hello World'
+    click_link '#english'
+    expect(page).to have_content 'Filtering by #english'
+    expect(page).to have_content 'Hello World'
+    expect(page).to_not have_content 'Hola Mundo'
+    clear_post_filters
+    expect(page).to have_content 'Hola Mundo'
   end
 end

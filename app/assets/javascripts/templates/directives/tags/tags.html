@@ -1,3 +1,6 @@
 <div class="tags" ng-show="tags.length">
-  <div class="tag" ng-repeat="tag in tags" ng-bind="::('#' + tag.name)"></div>
+  <a class="tag" ng-repeat="tag in tags"
+    ui-sref="root.posts({ tag: tag.name })"
+    ui-sref-opts="{ reload: true, inherit: true, notify: true }"
+    ng-bind="::('#' + tag.name)"></a>
 </div>
