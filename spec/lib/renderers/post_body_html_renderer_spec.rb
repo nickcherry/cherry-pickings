@@ -23,7 +23,7 @@ RSpec.describe Renderers::PostBodyHtmlRenderer do
 
     it 'should render emojis' do
       markdown = ":chicken:"
-      html = %r{<p><img class="emoji chicken-emoji" alt="chicken" src="http://.*\.png" /></p>}
+      html = %r{<p><img class="emoji chicken-emoji" src="http://.*\.png" /></p>}
       assert markdown, html
     end
 

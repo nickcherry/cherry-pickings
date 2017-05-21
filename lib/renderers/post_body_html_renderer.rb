@@ -29,9 +29,9 @@ module Renderers
 
     # Protected: Returns template for emoji image
     def emoji_template(emoji)
-      path = helpers.image_path "emoji/#{ emoji.image_filename }"
+      path = helpers.image_path("emoji/#{ emoji.image_filename }")
+        .gsub('http://www.nick-cherry.com//', '') # Temporary hack to overcome Cloudfront issue
       %(<img class="emoji #{ emoji.name }-emoji"
-          alt="#{ emoji.name }"
           src="#{ path }" />)
     end
 
