@@ -1,0 +1,12 @@
+<div class="filtering-by" ng-if="tag">
+  <div class="content">
+    <label>Filtering by</label>
+    <span class="tag">#{{ tag }}</span>
+    </label>
+    <a class="clear"
+      ui-sref="root.posts({ tag: undefined })"
+      ui-sref-opts="{ reload: true, inherit: true, notify: true }">
+      Clear
+    </a>
+  </div>
+</div>

@@ -2,6 +2,34 @@
   #main-view {
     margin-top: 68px;
   }
+  .posts {
+    position: relative;
+  }
+  .filtering-by {
+    border-bottom: 1px dotted rgba(white, .2);
+    padding-bottom: .35em;
+    position: absolute;
+    top: -58px;
+    label, .clear {
+      font-size: .55em;
+    }
+    .tag {
+      color: $dusty-grey;
+      font-size: .85em;
+      vertical-align: -1px;
+    }
+    .clear {
+      @extend a.no-underline;
+      display: inline-block;
+      &:before {
+        color: $white;
+        content: ' | ';
+        font-size: 1.25em;
+        margin: 0 3px;
+        opacity: .2;
+      }
+    }
+  }
 }
 
 .list-post, .post {
@@ -54,8 +82,13 @@
     line-height: 1;
   }
   .tag {
+    color: $dusty-grey;
     display: inline-block;
     margin-right: .5em;
+    @extend a.no-underline;
+    &:hover {
+      color: $link-color;
+    }
   }
 }
 

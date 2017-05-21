@@ -33,14 +33,6 @@ angular.module 'cherryPickings', [
           controller: 'FooterController'
           templateUrl: 'footer.html'
 
-    .state 'root.posts',
-      url: '/blog'
-      pageClass: 'posts'
-      views:
-        'main@':
-          controller: 'PostsController'
-          templateUrl: 'posts.html'
-
     .state 'root.post',
       url: '/blog/:id'
       pageClass: 'post'
@@ -48,6 +40,15 @@ angular.module 'cherryPickings', [
         'main@':
           controller: 'PostController'
           templateUrl: 'post.html'
+
+    # Be sure to keep this after the show route (i.e. /blog/:id)
+    .state 'root.posts',
+      url: '/blog?tag'
+      pageClass: 'posts'
+      views:
+        'main@':
+          controller: 'PostsController'
+          templateUrl: 'posts.html'
 
     .state 'root.resume',
       url: '/resume'
