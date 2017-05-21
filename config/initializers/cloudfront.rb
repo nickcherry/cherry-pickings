@@ -1,4 +1,5 @@
 # http://ricostacruz.com/til/rails-and-cloudfront
+# http://thelazylog.com/correct-configuration-to-fix-cors-issue-with-cloudfront/
 
 # Middleware to deny CloudFront requests to non-assets
 class CloudfrontDenier
