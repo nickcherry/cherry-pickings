@@ -64,7 +64,7 @@ guard
 
 ## Deployment
 
-Ensure that the Heroku app is configured to use the [Ruby-Bower buildpack](https://github.com/qnyp/heroku-buildpack-ruby-bower.git), [ImageMagick](https://github.com/ello/heroku-buildpack-imagemagick), and [Image-Optim](https://github.com/bobbus/image-optim-buildpack) buildpacks.
+Ensure that the Heroku app is configured to use the [Ruby-Bower buildpack](https://github.com/qnyp/heroku-buildpack-ruby-bower.git) buildpack.
 
 After every green commit to `master`, [CircleCI](https://circleci.com/gh/nickcherry/cherry-pickings/tree/master) will automatically deploy to Heroku, migrate the database, and sync databases posts with the markdown found in `db/posts`. This process can also be invoked manually by running the following rake task:
 
