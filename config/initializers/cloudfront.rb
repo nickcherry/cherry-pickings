@@ -16,7 +16,7 @@ class CloudfrontDenier
   end
 
   def asset?(env)
-    env['PATH_INFO'] =~ %r{^/assets}
+    env['PATH_INFO'] =~ %r{^/assets|^/fonts|^/images|^/vendor}
   end
 
   def cloudfront?(env)
