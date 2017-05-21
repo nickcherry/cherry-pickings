@@ -1,0 +1,8 @@
+app:
+  url: "http://nick-cherry.com"
+  protocol: "http"
+  host: "nick-cherry.com"
+  port: 80
+
+assets:
+  host: "http://dakxpbpblzynq.cloudfront.net"

@@ -5,7 +5,7 @@ namespace :sitemaps do
   desc 'Notify Google and Bing about new sitemap'
   task :notify => :environment do
 
-    SITEMAP_URL = 'http://www.nick-cherry.com/sitemap.xml'
+    SITEMAP_URL = "#{ Settings.app.url }/sitemap.xml"
 
     uri = URI('http://www.google.com/webmasters/sitemaps/ping')
     uri.query = URI.encode_www_form(sitemap: SITEMAP_URL)

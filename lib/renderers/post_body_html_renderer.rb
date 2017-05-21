@@ -5,17 +5,28 @@ module Renderers
     include Rouge::Plugins::Redcarpet
 
     def postprocess(document)
-      [:emojify, :resolve_links].reduce(document) do |document, process|
+      [
+        :emojify, # Emojification should come before URL resolution
+        :resolve_link_paths,
+        :resolve_asset_paths
+      ].reduce(document) do |document, process|
         send process, document
       end
     end
 
   protected
 
-    # Protected: Convert all anchor and image paths to absolute URLs
-    def resolve_links(document)
-      document.gsub(/<(?:a[^>]+href|img[^>]+src)=["'](\/)/) do |match|
+    # Protected: Convert all link paths absolute URLs
+    def resolve_link_paths(document)
+      document.gsub(/<(?:a[^>]+href)=["'](\/)/) do |match|
         match.chomp('/') + base_url + '/'
+      end
+    end
+
+    # Protected: Convert all asset paths to absolute (Cloudfront) URLs
+    def resolve_asset_paths(document)
+      document.gsub(/<(?:img[^>]+src|link[^>]+href|script[^>]+src)=["'](\/)/) do |match|
+        match.include?(asset_base_url) ? match : match.chomp('/') + asset_base_url + '/'
       end
     end
 
@@ -30,7 +41,6 @@ module Renderers
     # Protected: Returns template for emoji image
     def emoji_template(emoji)
       path = helpers.image_path("emoji/#{ emoji.image_filename }")
-        .gsub('http://www.nick-cherry.com//', '') # Temporary hack to overcome Cloudfront issue
       %(<img class="emoji #{ emoji.name }-emoji"
           src="#{ path }" />)
     end
@@ -40,11 +50,16 @@ module Renderers
       ActionController::Base.helpers
     end
 
-    # Protected: Returns root URL, necessary for resolving relative paths to absolute URLs
+    # Protected: Returns root URL, necessary for resolving relative link paths to absolute URLs
     def base_url
       @base_url ||= URI::HTTP.build(
         Rails.application.config.action_controller.default_url_options
       ).to_s
+    end
+
+    # Protected: Returns asset root URL, necessary for resolving relative asset paths to absolute URLs
+    def asset_base_url
+      @asset_url ||= Rails.application.config.action_controller.asset_host
     end
 
   end

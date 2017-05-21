@@ -468,7 +468,7 @@ And that's all folks. Now comes the fun part. Let's load up <a target="_blank" h
   </tbody>
 </table>
 
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <figure>
   <div class="image-wrapper">

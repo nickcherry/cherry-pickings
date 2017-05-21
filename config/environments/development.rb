@@ -36,15 +36,25 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  # We don't actually do this in development, but we want the configuration to be
+  # similar to production (where we servce assets on Cloudfront) so features like
+  # the resolution of absolute URLs in post markdown work the same way.
+  config.action_controller.asset_host = Settings.assets.host
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.default_url_options = {
-    protocol: 'http', host: 'localhost', port: 5000
+    protocol: Settings.app.protocol,
+    host: Settings.app.host,
+    port: Settings.app.port
   }
 
   config.action_controller.default_url_options = {
-    protocol: 'http', host: 'localhost', port: 5000
+    protocol: Settings.app.protocol,
+    host: Settings.app.host,
+    port: Settings.app.port
   }
 
 end

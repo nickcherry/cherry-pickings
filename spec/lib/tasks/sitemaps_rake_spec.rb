@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'sitemaps:notify' do
 
-  let(:sitemap_url) { 'http://www.nick-cherry.com/sitemap.xml' }
+  let(:sitemap_url) { 'http://localhost:9876/sitemap.xml' }
 
   let!(:google_request) { stub_request(:get, %r{http://www.google.com/webmasters/sitemaps/ping}).
     with(query: { sitemap: sitemap_url }).to_return(status: 200)

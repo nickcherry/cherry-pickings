@@ -1,0 +1,8 @@
+app:
+  url: "http://localhost:9876"
+  protocol: "http"
+  host: "localhost"
+  port: 9876
+
+assets:
+  host: "http://localhost:9876"

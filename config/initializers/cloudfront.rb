@@ -26,4 +26,4 @@ class CloudfrontDenier
 end
 
 Rails.application.config.middleware.use CloudfrontDenier,
-  target: 'http://www.nick-cherry.com/'
+  target: Settings.app.url

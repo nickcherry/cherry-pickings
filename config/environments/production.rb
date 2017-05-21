@@ -66,8 +66,8 @@ Rails.application.configure do
                           :password => ENV["MEMCACHIER_PASSWORD"]
                         }
 
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = 'dakxpbpblzynq.cloudfront.net'
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server. (Cloudfront)
+  config.action_controller.asset_host = Settings.assets.host
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -87,11 +87,15 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = {
-    protocol: 'http', host: 'www.nick-cherry.com'
+    protocol: Settings.app.protocol,
+    host: Settings.app.host,
+    port: Settings.app.port
   }
 
   config.action_controller.default_url_options = {
-    protocol: 'http', host: 'www.nick-cherry.com'
+    protocol: Settings.app.protocol,
+    host: Settings.app.host,
+    port: Settings.app.port
   }
 
   # Allow prerender.io to render SPA for bots
