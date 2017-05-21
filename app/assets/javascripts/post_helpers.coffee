@@ -15,6 +15,7 @@ _.extend (window.cherryPickings ||= {}),
 
   getDefaultPlotlyLayout: ->
     _.assign {},
+      autosize: true
       font:
         family: 'MuseoSans, sans-serif'
       hovermode: false
@@ -26,11 +27,15 @@ _.extend (window.cherryPickings ||= {}),
         r: 30
         b: 30
         t: 30
-        pad: 3 # distance between axes and labels
+        pad: 5 # Sets the amount of padding (in px) between the plotting area and the axis lines
       paper_bgcolor: 'transparent',
       plot_bgcolor: 'transparent'
       showlegend: true
       xaxis:
         fixedrange: true
+        zeroline: false
+        showline: false
       yaxis:
         fixedrange: true
+        zeroline: false
+        showline: false
