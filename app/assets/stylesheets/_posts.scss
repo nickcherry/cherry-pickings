@@ -110,13 +110,7 @@
   }
   .tags {
     color: $dusty-grey;
-    display: none;
     font-size: .65em;
-  }
-  @include respond-to(sm) {
-    .tags {
-      display: block;
-    }
   }
 }
 
