@@ -4,15 +4,14 @@ angular.module('cherryPickings').service 'Browser', ($rootScope) ->
 
     @init: ->
       $rootScope.browser ||= {}
-      $rootScope.browser.chrome = @chrome()
-      $rootScope.browser.firefox = @firefox()
-      $rootScope.browser.ios = @ios()
-      $rootScope.browser.safari = @safari()
+      $rootScope.browser.chrome = @isChrome()
+      $rootScope.browser.firefox = @isFirefox()
+      $rootScope.browser.ios = @isIos()
+      $rootScope.browser.safari = @isSafari()
 
-    @android: -> bowser.android
-    @chrome: -> bowser.chrome
-    @dateInput: -> bowser.chrome || bowser.ios
-    @firefox: -> bowser.firefox
-    @mobile: -> bowser.mobile
-    @ios: -> bowser.ios
-    @safari: -> bowser.safari
+    @isAndroid: -> bowser.android
+    @isChrome: -> bowser.chrome
+    @isFirefox: -> bowser.firefox
+    @isMobile: -> bowser.mobile
+    @isIos: -> bowser.ios
+    @isSafari: -> bowser.safari
