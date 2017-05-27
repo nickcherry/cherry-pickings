@@ -8,13 +8,11 @@ tags:
 published: true
 ---
 
-<link rel="stylesheet" type="text/css" href="/vendor/katex-0.7.1/katex.min.css">
-<script src="/vendor/katex-0.7.1/katex.min.js"></script>
 <script src="/vendor/plotly-1.27.0/plotly-basic.min.js"></script>
 
 Welcome to the second episode of <a href="/blog?tag=machine_learning">Machine Learning for Mere Mortals</a>! Previously, we talked about <a target="_blank" href="/blog/naive_bayes"> Naive Bayes</a>, which we refer to as a __classification algorithm__; because it attempts to classify inputs into discrete categories. Today we're going implement a __regression algorithm__ (specifically, linear regression) to predict continuous numeric values.
 
-You probably remember calculating the "line of best fit" back in middle school. Given a set of data points – let's say:
+You probably remember calculating the "line of best fit" back in high school. If we were given a set of data points – let's say:
 
 ```javascript
 const points = [
@@ -26,7 +24,22 @@ const points = [
 ];
 ```
 
-We would calculate the __slope__, <span class="katex-wrapper inline">m</span>, and __y-intercept__, <span class="katex-wrapper inline">b</span>, of a function that took the shape <span class="katex-wrapper inline">y = b + mx</span>.
+We would use the formula below to calculate the __y-intercept__, <span class="cp-katex inline">t_0</span>, and __slope__, <span class="cp-katex inline">t_1</span> of a function that took the shape <span class="cp-katex inline">y = t_0 + t_{1}x</span>. Then, given any value for <span class="cp-katex inline">x</span>, we could use our line of best fit to estimate the outcome variable, <span class="cp-katex inline">y</span>.
+
+<figure class="katex-figure">
+  <figcaption>Given <span class="cp-katex inline">n</span> is the number of points in the data set:</figcaption>
+  <div class=cp-katex>
+    t_1 = \frac{n\sum{xy} - (\sum{x})(\sum{y})}{n\sum{x^2} - (\sum{x})^2}
+  </div>
+</figure>
+
+<figure class="katex-figure">
+  <div class="cp-katex">
+    t_0 = \frac{\sum{y} - t_1(\sum{x})}{n}
+  </div>
+</figure>
+
+If we plug in the points from our tiny data set, we end up with a regression of <span class="cp-katex inline">y = 3.24 + 1.64x</span>, which looks like this when you graph it:
 
 <figure>
   <div class="chart-wrapper">
@@ -34,23 +47,11 @@ We would calculate the __slope__, <span class="katex-wrapper inline">m</span>, a
   </div>
 </figure>
 
-The formula that allowed us to make those forecasts looked something like this:
 
 
-<figure class="katex-figure">
-  <div class="katex-wrapper">
-    m = \frac{n\sum{xy} - (\sum{x})(\sum{y})}{n\sum{x^2} - (\sum{x})^2}
-  </div>
-</figure>
-
-<figure class="katex-figure">
-  <div class="katex-wrapper">
-    b = \frac{\sum{y} - m(\sum{x})}{n}
-  </div>
-</figure>
 
 <figure>
-  <div class="chart-wrapper">
+  <div class="cp-katext">
     <div class="chart" id="simple-gradient-descent-chart"></div>
   </div>
 </figure>
@@ -59,27 +60,27 @@ Let's revisit our UFO sightings data set and see if we can arrive at a similar c
 
 <figure class="katex-figure">
   <figcaption>
-    Let's start by defining our <strong>hypothesis</strong>, <div class="katex-wrapper inline">h_\theta(x_i)</div>, which takes the familiar shape of <div class="katex-wrapper inline">y = b + mx</div>.
+    Let's start by defining our <strong>hypothesis</strong>, <div class="cp-katex inline">h_\theta(x_i)</div>, which takes the familiar shape of <div class="cp-katex inline">y = t_0 + t_{1}x</div>.
   </figcaption>
-  <div class="katex-wrapper">
+   <div class="cp-katext">
     h_\theta(x_i) = \theta_0 + \theta_1 x_i
   </div>
 </figure>
 
 <figure class="katex-figure">
   <figcaption>
-    And our <strong>cost function</strong>, <div class="katex-wrapper inline">J(\theta_0, \theta_1)</div>, which is the sum of differences between our predicted outcomes – i.e. our hypothesis' results – and the actual values of <div class="katex-wrapper inline">y_i</div>, all divided by <div class="katex-wrapper inline">2m</div>, where <div class="katex-wrapper inline">m</div> is the number of points in our data set.
+    And our <strong>cost function</strong>, <div class="cp-katex inline">J(\theta_0, \theta_1)</div>, which is the sum of differences between our predicted outcomes – i.e. our hypothesis' results – and the actual values of <div class="cp-katex inline">y_i</div>, all divided by <div class="cp-katex inline">2m</div>, where <div class="cp-katex inline">m</div> is the number of points in our data set.
   </figcaption>
-  <div class="katex-wrapper">
+  <div class="cp-katex">
     J(\theta_0, \theta_1) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x_i)-y_i)
   </div>
 </figure>
 
 <figure class="katex-figure">
   <figcaption>
-    In order to measure the error of each <a target="_blank" href="https://www.youtube.com/watch?v=SbfRDBmyAMI">use the chain rule to calculate partial derivatives</a> for <div class="katex-wrapper inline">\theta_0</div> and <div class="katex-wrapper inline">\theta_1</div>.
+    In order to measure the error of each <a target="_blank" href="https://www.youtube.com/watch?v=SbfRDBmyAMI">use the chain rule to calculate partial derivatives</a> for <div class="cp-katex inline">\theta_0</div> and <div class="cp-katex inline">\theta_1</div>.
   </figcaption>
-  <div class="katex-wrapper">
+  <div class="cp-katex">
     \frac{\partial}{\partial\theta_0}h_\theta(x_i)=1, \ \frac{\partial}{\partial\theta_1}h_\theta(x_i) = x_i
   </div>
 </figure>
@@ -87,37 +88,37 @@ Let's revisit our UFO sightings data set and see if we can arrive at a similar c
 I won't try to explain the math used to simplify  <a target="_blank" href="https://math.stackexchange.com/a/1695446">Christian Sykes</a>.
 
 <figure class="katex-figure">
-  <div class="katex-wrapper">
+  <div class="cp-katex">
     \frac{\partial}{\partial\theta_j} J(\theta_0, \theta_1) = \frac{\partial}{\partial\theta_j}\frac{1}{2m} \sum_{i=1}^m (h_\theta(x_i)-y_i)^2
   </div>
 </figure>
 
 <figure class="katex-figure">
-  <div class="katex-wrapper">
+  <div class="cp-katex">
   ...
   </div>
 </figure>
 
 <figure class="katex-figure">
-  <div class="katex-wrapper">
+  <div class="cp-katex">
 ...
   </div>
 </figure>
 
 <figure class="katex-figure">
-  <div class="katex-wrapper">
+  <div class="cp-katex">
 ...
   </div>
 </figure>
 
 <figure class="katex-figure">
-  <div class="katex-wrapper">
+  <div class="cp-katex">
 ...
   </div>
 </figure>
 
 <figure class="katex-figure">
-  <div class="katex-wrapper">
+  <div class="cp-katex">
 ...
   </div>
 </figure>
@@ -142,22 +143,12 @@ In this post, we applied __mini-batch gradient descent__, which means we
   setTimeout(function() {
 
     /***********************************************/
-    /* Render Katex */
-    /***********************************************/
-
-    $('.post').find('.katex-wrapper').each(function(i, el) {
-      katex.render($(el).html(), el);
-    });
-
-
-    /***********************************************/
     /* Defaults */
     /***********************************************/
 
     var defaultConfig = window.cherryPickings.getDefaultPlotlyConfig();
     var defaultLayout = window.cherryPickings.getDefaultPlotlyLayout();
     var charts = [];
-
 
 
     /***********************************************/
@@ -167,7 +158,7 @@ In this post, we applied __mini-batch gradient descent__, which means we
     var lineOfBestFitChartEl = document.getElementById('line-of-best-fit-chart');
 
     var lineOfBestFitScatterTrace = {
-      name: 'Actual Data Points',
+      name: 'Actual Data',
       mode: 'markers',
       type: 'scatter',
       x: [0,1,2,3,4],
@@ -178,18 +169,18 @@ In this post, we applied __mini-batch gradient descent__, which means we
     };
 
     var lineOfBestFitRegressionTrace = {
-      name: 'Prediction (y = 3.18 + 1.64x)',
+      name: 'Prediction Formula: y = 3.24 + 1.68x',
       mode: 'lines',
       type: 'scatter',
       line: {
         color: 'rgba(255, 127, 14, 1)'
       },
       x: [0, 4],
-      y: [3.18, 9.74],
+      y: [3.24, 9.8],
     };
 
     var lineOfBestFitLayout = Object.assign({}, defaultLayout, {
-      margin: { l: 30, r: 5, t: 30, b: 40, pad: 3 },
+      margin: { l: 30, r: 5, t: 25, b: 40, pad: 3 },
       xaxis: {
         fixedrange: true,
         nticks: 5,
@@ -200,7 +191,7 @@ In this post, we applied __mini-batch gradient descent__, which means we
     });
 
     charts.push(lineOfBestFitChartEl);
-    Plotly.plot(lineOfBestFitChartEl, [lineOfBestFitScatterTrace, lineOfBestFitRegressionTrace], lineOfBestFitLayout, defaultConfig);
+    Plotly.plot(lineOfBestFitChartEl, [lineOfBestFitRegressionTrace, lineOfBestFitScatterTrace], lineOfBestFitLayout, defaultConfig);
 
     /***********************************************/
     /* Simple Gradient Descent */
@@ -220,12 +211,12 @@ In this post, we applied __mini-batch gradient descent__, which means we
     };
 
     var simpleGDIterationResults = [
-      { iteration: 0, t0: 0, t1: 0, color: 'rgba(255, 127, 14, .1)', error: 232.92 },
-      { iteration: 10, t0: 0.28, t1: 0.69, color: 'rgba(255, 127, 14, .30)', error: 121.70 },
-      { iteration: 50, t0: 0.85, t1: 1.94 , color: 'rgba(255, 127, 14, .45)', error: 14.67 },
-      { iteration: 100, t0: 1.13, t1: 2.25, color: 'rgba(255, 127, 14, .60)', error: 6.51 },
-      { iteration: 1000, t0: 2.56, t1: 1.84, color: 'rgba(255, 127, 14, .75)', error: 0.64 },
-      { iteration: 5000, t0: 3.05, t1: 1.67, color: 'rgba(255, 127, 14, 1)', error: 0.23 },
+      { iteration: 0, t0: 0, t1: 0, color: 'rgba(255, 127, 14, .1)', error: 239.64 },
+      { iteration: 10, t0: 0.29, t1: 0.70, color: 'rgba(255, 127, 14, .30)', error: 125.69 },
+      { iteration: 50, t0: 0.88, t1: 1.96 , color: 'rgba(255, 127, 14, .45)', error: 15.93 },
+      { iteration: 100, t0: 1.17, t1: 2.28, color: 'rgba(255, 127, 14, .60)', error: 7.44 },
+      { iteration: 1000, t0: 2.70, t1: 1.83, color: 'rgba(255, 127, 14, .75)', error: 0.67 },
+      { iteration: 5000, t0: 3.23, t1: 1.64, color: 'rgba(255, 127, 14, 1)', error: 0.19 },
     ];
 
     var simpleGDRegressionTraces = [], result;
