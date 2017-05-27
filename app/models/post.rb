@@ -1,5 +1,4 @@
 class Post < ActiveRecord::Base
-
   validates :public_id, presence: true, uniqueness: true
   validates :title, presence: true
   validates :body_markdown, presence: true
@@ -39,5 +38,4 @@ protected
       Renderers::PostBodyHtmlRenderer.new
     )
   end
-
 end

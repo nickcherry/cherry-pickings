@@ -1,41 +1,35 @@
+require 'katex'
+require 'nokogiri'
 require 'rouge/plugins/redcarpet'
 
 module Renderers
   class PostBodyHtmlRenderer < Redcarpet::Render::HTML
     include Rouge::Plugins::Redcarpet
 
-    def postprocess(document)
+    def postprocess(doc)
       [
         :emojify, # Emojification should come before URL resolution
+        :katexify,
         :resolve_link_paths,
-        :resolve_asset_paths
-      ].reduce(document) do |document, process|
-        send process, document
-      end
+        :resolve_css_paths,
+        :resolve_img_and_script_paths,
+      ].reduce(nokogirify(doc)) { |doc, process| send(process, doc) }.to_s
     end
 
   protected
 
-    # Protected: Convert all link paths absolute URLs
-    def resolve_link_paths(document)
-      document.gsub(/<(?:a[^>]+href)=["'](\/)/) do |match|
-        match.chomp('/') + base_url + '/'
-      end
-    end
-
-    # Protected: Convert all asset paths to absolute (Cloudfront) URLs
-    def resolve_asset_paths(document)
-      document.gsub(/<(?:img[^>]+src|link[^>]+href|script[^>]+src)=["'](\/)/) do |match|
-        match.include?(asset_base_url) ? match : match.chomp('/') + asset_base_url + '/'
-      end
+    # Protected: Initializes HTML string as Nokogiri HTML instance
+    def nokogirify(doc)
+      Nokogiri::HTML.fragment(doc)
     end
 
     # Protected: Replace emoji characters (e.g. ':squirrel:') with emoji images
-    def emojify(document)
-      document.gsub(/:([\w+-]+):/) do |match|
+    def emojify(doc)
+      doc_as_string = doc.to_s.gsub(/:([\w+-]+):/) do |match|
         emoji = Emoji.find_by_alias($1)
         emoji ? emoji_template(emoji) : match
       end
+      nokogirify(doc_as_string)
     end
 
     # Protected: Returns template for emoji image
@@ -45,14 +39,59 @@ module Renderers
           src="#{ path }" />)
     end
 
+    # Protected: Convert all link paths absolute URLs
+    def resolve_link_paths(doc)
+      doc.tap do |doc|
+        doc.css('a').each do |node|
+          href = node['href']
+          if href && !href.starts_with?(app_base_url)
+            node['href'] = app_base_url + single_leading_slash(href)
+          end
+        end
+      end
+    end
+
+    # Protected: Convert all css asset paths to absolute (Cloudfront) URLs
+    def resolve_css_paths(doc)
+       doc.tap do |doc|
+        doc.css('link').each do |node|
+          href = node['href']
+          if href && !href.starts_with?(asset_base_url)
+            node['href'] = asset_base_url + single_leading_slash(href)
+          end
+        end
+      end
+    end
+
+    # Protected: Convert all img and script asset paths to absolute (Cloudfront) URLs
+    def resolve_img_and_script_paths(doc)
+      doc.tap do |doc|
+        doc.css('img,script').each do |node|
+          src = node['src']
+          if src && !src.starts_with?(asset_base_url)
+            node['src'] = asset_base_url + single_leading_slash(src)
+          end
+        end
+      end
+    end
+
+    # Protected: Replace Katex characters (e.g. \frac{\sum{y} - m(\sum{x})}{n}) with HTML equivalent
+    def katexify(doc)
+      doc.tap do |doc|
+        doc.css('.cp-katex').each do |node|
+          node.inner_html = Katex.render(node.content)
+        end
+      end
+    end
+
     # Protected: Returns ActionController helpers, necessary for generating asset paths
     def helpers
       ActionController::Base.helpers
     end
 
     # Protected: Returns root URL, necessary for resolving relative link paths to absolute URLs
-    def base_url
-      @base_url ||= URI::HTTP.build(
+    def app_base_url
+      @app_base_url ||= URI::HTTP.build(
         Rails.application.config.action_controller.default_url_options
       ).to_s
     end
@@ -62,5 +101,10 @@ module Renderers
       @asset_url ||= Rails.application.config.action_controller.asset_host
     end
 
+    # Protected:
+    def single_leading_slash(str)
+      first_non_slash_index = str.index /[^\/]/
+      '/' + str.slice(first_non_slash_index, str.size)
+    end
   end
 end

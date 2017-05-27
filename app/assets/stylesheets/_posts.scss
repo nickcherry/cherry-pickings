@@ -133,7 +133,7 @@
     .embedded-content-wrapper,
     .image-wrapper,
     .iframe-wrapper,
-    > .katex-wrapper {
+    > .cp-katex {
       display: block;
       position: relative;
       transform: translate3d(0, 0, 0);
@@ -161,7 +161,7 @@
         text-align: left;
       }
     }
-    > .katex-wrapper .katex {
+    > .cp-katex .katex {
       background-color: $mine-shaft;
       overflow: visible;
       position: relative;

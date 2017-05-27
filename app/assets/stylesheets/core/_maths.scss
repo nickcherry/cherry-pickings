@@ -1,24 +1,26 @@
-.katex-wrapper {
-  font-size: 1.5rem;
+.cp-katex {
+  font-size: 1.25rem;
   text-align: center;
   &.inline {
     display: inline-block;
-    font-size: 1rem;
     .katex {
+      font-size: 1em; // inline mobile
       overflow: visible;
       padding: 0;
+      @include respond-to(sm) {
+        font-size: 1em; // inline tablet/desktop
+      }
     }
   }
-}
-
-.katex-wrapper .katex {
-  box-shadow: 0 0 2px 0 rgba(black, .1);
-  color: $dusty-grey; //$ocean-spray;
-  display: inline-block;
-  font-size: 1em;
-  overflow: auto;
-  padding: .15em .5em;
-  @include respond-to(sm) {
-    font-size: 1.25em;
+  .katex {
+    box-shadow: 0 0 2px 0 rgba(black, .1);
+    color: $dusty-grey;
+    display: inline-block;
+    font-size: 1.25em; // block mobile
+    overflow: auto;
+    padding: .15em .5em;
+    @include respond-to(sm) {
+      font-size: 1.5em; // block tablet/desktop
+    }
   }
 }

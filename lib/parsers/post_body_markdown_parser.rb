@@ -1,3 +1,6 @@
+require 'redcarpet'
+require 'rouge'
+
 module Parsers
   class PostBodyMarkdownParser < Redcarpet::Markdown
     def self.new(renderer, extensions={})
