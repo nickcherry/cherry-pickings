@@ -156,11 +156,6 @@
     twitterwidget {
       margin: auto;
     }
-    &.katex-figure {
-      figcaption {
-        text-align: left;
-      }
-    }
     > .cp-katex .katex {
       background-color: $mine-shaft;
       overflow: visible;
