@@ -44,7 +44,7 @@ module Renderers
       doc.tap do |doc|
         doc.css('a').each do |node|
           href = node['href']
-          if href && !href.starts_with?(app_base_url)
+          if href && !is_absolute?(href)
             node['href'] = app_base_url + single_leading_slash(href)
           end
         end
@@ -56,7 +56,7 @@ module Renderers
        doc.tap do |doc|
         doc.css('link').each do |node|
           href = node['href']
-          if href && !href.starts_with?(asset_base_url)
+          if href && !is_absolute?(href)
             node['href'] = asset_base_url + single_leading_slash(href)
           end
         end
@@ -68,7 +68,7 @@ module Renderers
       doc.tap do |doc|
         doc.css('img,script').each do |node|
           src = node['src']
-          if src && !src.starts_with?(asset_base_url)
+          if src && !is_absolute?(src)
             node['src'] = asset_base_url + single_leading_slash(src)
           end
         end
@@ -101,10 +101,15 @@ module Renderers
       @asset_url ||= Rails.application.config.action_controller.asset_host
     end
 
-    # Protected:
+    # Protected: Ensures that provided string has a single leading slash
     def single_leading_slash(str)
       first_non_slash_index = str.index /[^\/]/
       '/' + str.slice(first_non_slash_index, str.size)
+    end
+
+    # Protected: Determines whether a given path is absolute
+    def is_absolute?(path)
+      path =~ /^(?:[a-z]+:)?\/\//
     end
   end
 end

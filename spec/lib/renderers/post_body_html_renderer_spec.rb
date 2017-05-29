@@ -46,13 +46,19 @@ RSpec.describe Renderers::PostBodyHtmlRenderer do
       assert markdown, html
     end
 
-    it 'should resolve links to absolute URLs' do
+    it 'should resolve relative links to absolute URLs' do
       markdown = "<a href='/first'>First</a><a href=\"/second\">Second</a>"
       html = %r{<p><a href="#{ app_host }/first">First</a><a href="#{ app_host }/second">Second</a></p>}
       assert markdown, html
     end
 
-    it 'should resolve assets to absolute URLs' do
+    it 'should not resolve absolute paths' do
+      markdown = '<a href="https://google.com">Some Other Site</a>'
+      html = '<a href="https://google.com">Some Other Site</a>'
+      assert markdown, html
+    end
+
+    it 'should resolve relative asset paths to absolute URLs' do
       markdown = [
         "<script src='/vendor.js'></script>",
         "<link rel='stylesheet' type='text/css' href=\"vendor.css\">",
@@ -63,6 +69,22 @@ RSpec.describe Renderers::PostBodyHtmlRenderer do
         "<script src=\"#{ asset_host }/vendor.js\"></script>",
         "<link rel=\"stylesheet\" type=\"text/css\" href=\"#{ asset_host }/vendor.css\">",
         "<img src=\"#{ asset_host }/vendor.png\">",
+        "</p>"
+      ].join
+      assert markdown, html
+    end
+
+    it 'should not resolve absolute asset paths' do
+      markdown = [
+        "<script src='https://google.com/vendor.js'></script>",
+        "<link rel='stylesheet' type='text/css' href=\"https://google.com/vendor.css\">",
+        "<img src=\"https://google.com/vendor.png\">"
+      ].join
+      html = [
+        "<p>",
+        "<script src=\"https://google.com/vendor.js\"></script>",
+        "<link rel=\"stylesheet\" type=\"text/css\" href=\"https://google.com/vendor.css\">",
+        "<img src=\"https://google.com/vendor.png\">",
         "</p>"
       ].join
       assert markdown, html
