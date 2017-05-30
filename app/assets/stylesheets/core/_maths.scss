@@ -20,7 +20,7 @@
     overflow: auto;
     padding: .15em .5em;
     @include respond-to(sm) {
-      font-size: 1.5em; // block tablet/desktop
+      font-size: 1.25em; // block tablet/desktop
     }
   }
 }

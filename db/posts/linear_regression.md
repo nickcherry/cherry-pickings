@@ -10,36 +10,57 @@ published: true
 
 <script src="/vendor/plotly-1.27.0/plotly-basic.min.js"></script>
 
-Welcome to the second episode of <a href="/blog?tag=machine_learning">Machine Learning for Mere Mortals</a>! Previously, we talked about <a target="_blank" href="/blog/naive_bayes"> Naive Bayes</a>, which we refer to as a __classification algorithm__; because it attempts to classify inputs into discrete categories. Today we're going implement a __regression algorithm__ (specifically, linear regression) to predict continuous numeric values.
+Welcome to the second episode of <a href="/blog?tag=machine_learning">Machine Learning for Mere Mortals</a>! Previously, we talked about <a target="_blank" href="/blog/naive_bayes">Naive Bayes</a>, which we refer to as a __classification algorithm__; because it attempts to classify inputs into discrete categories. Today we're going implement a __regression algorithm__ (specifically, linear regression) to predict continuous numeric values.
 
 You probably remember calculating the "line of best fit" back in high school. If we were given a set of data points – let's say:
 
-```javascript
-const points = [
-  { x: 0, y: 3.3 },
-  { x: 1, y: 4.4 },
-  { x: 2, y: 6.5 },
-  { x: 3, y: 7.9 },
-  { x: 4, y: 9.9 },
-];
-```
+<table class="data-table two-column equal-column-widths align-center">
+  <thead>
+    <tr>
+      <th>x</th>
+      <th>y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>3.3</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>4.4</td>
+    </tr>
+        <tr>
+      <td>2</td>
+      <td>6.5</td>
+    </tr>
+        <tr>
+      <td>3</td>
+      <td>7.9</td>
+    </tr>
+        <tr>
+      <td>4</td>
+      <td>9.9</td>
+    </tr>
+  </tbody>
+</table>
 
-We would use the formula below to calculate the __y-intercept__, <span class="cp-katex inline">t_0</span>, and __slope__, <span class="cp-katex inline">t_1</span> of a function that took the shape <span class="cp-katex inline">y = t_0 + t_{1}x</span>. Then, given any value for <span class="cp-katex inline">x</span>, we could use our line of best fit to estimate the outcome variable, <span class="cp-katex inline">y</span>.
+We would use the formulae below to calculate a __y-intercept__, <span class="cp-katex inline">\theta_0</span>, and __slope__, <span class="cp-katex inline">\theta_1</span>, for a function that takes the shape <span class="cp-katex inline">y = \theta_0 + \theta_{1}x</span>. Then, for any value of <span class="cp-katex inline">x</span>, we could use our line of best fit to estimate the outcome variable, <span class="cp-katex inline">y</span>.
 
 <figure class="katex-figure">
-  <figcaption>Given <span class="cp-katex inline">n</span> is the number of points in the data set:</figcaption>
+  <figcaption>Given <span class="cp-katex inline">n</span> is the number of points in the dataset:</figcaption>
   <div class=cp-katex>
-    t_1 = \frac{n\sum{xy} - (\sum{x})(\sum{y})}{n\sum{x^2} - (\sum{x})^2}
+    \theta_1 = \frac{n\sum{x_{i}y_i} - (\sum{x_i})(\sum{y_i})}{n\sum{x_{i}^2} - (\sum{x_i})^2}
   </div>
 </figure>
 
 <figure class="katex-figure">
   <div class="cp-katex">
-    t_0 = \frac{\sum{y} - t_1(\sum{x})}{n}
+    \theta_0 = \frac{\sum{y_i} - \theta_1\sum{x_i}}{n}
   </div>
 </figure>
 
-If we plug in the points from our tiny data set, we end up with a regression of <span class="cp-katex inline">y = 3.24 + 1.64x</span>, which looks like this when you graph it:
+When we plug in the values from our tiny sample dataset, we end up with a regression of <span class="cp-katex inline">y = 3.24 + 1.64x</span>. Or, in graphical form:
 
 <figure>
   <div class="chart-wrapper">
@@ -47,39 +68,41 @@ If we plug in the points from our tiny data set, we end up with a regression of 
   </div>
 </figure>
 
+It's important to note that (without any transformations) the line of best fit only works when the data actually conforms to a linear trend. Assuming the requirement is met, we can get a lot of mileage from analytic approaches like this one.
+
+Now, you might be wondering how machine learning ties into all of this, considering that we could calculate a regression line with a well-sharpened pencil. The short answer is that <a target="_blank" href="https://en.wikipedia.org/wiki/Closed-form_expression">closed-form</a> expressions <a target="_blank" href="https://stats.stackexchange.com/a/23132">don't always perform well when dealing with large, multivariate datasets</a>; we'd prefer a solution that's easier to parallelize and less vulnerable to memory limitations. Furthermore, real-world problems often can't be solved by closed-form solutions, and it would be nice to have a more generic approach that can be applied to a wider range of scenarios.
+
+This is where we introduce one of the fundamental concepts of machine learning: __gradient descent__. <a target="_blank" href="https://hackernoon.com/life-is-gradient-descent-880c60ac1be8">Rohan Kshirsagar</a> describes it as:
+
+> …a really beautiful algorithm that helps find the optimal solution to a function, and forms the foundations of how we train intelligent systems today. It’s based off a very simple idea — rather than figuring out the best solution to a problem immediately, it guesses an initial solution and steps it in a direction that’s closer to a better solution. The algorithm is to repeat this procedure, until the solution is good enough.
 
 
 
-<figure>
-  <div class="cp-katext">
-    <div class="chart" id="simple-gradient-descent-chart"></div>
+The driving force behind gradient descent is the __cost function__. The cost function is a
+
+Today we're going to be using <a target="_blank" href="https://en.wikipedia.org/wiki/Mean_squared_error">mean squared error</a>
+
+Let's start by defining a __hypothesis__, <span class="cp-katex inline">h_\theta(x_i)</span>, which is the function that _predicts_ the value of <span class="cp-katex inline">y</span>. In this example, we're assuming that the data adheres to a linear pattern. Our hypothesis should look familiar; it's simply the function of a straight line:
+
+<figure class="katex-figure">
+   <div class="cp-katex">
+    h_\theta(x_i) = \theta_0 + \theta_{1}x_i
   </div>
 </figure>
 
-Let's revisit our UFO sightings data set and see if we can arrive at a similar conclusion using gradient descent. To be
+Next, we'll need to come up with a __cost function__, <span class="cp-katex inline">J(\theta_0, \theta_1)</span>, which is . In this case, we'll
+
+ is the sum of differences between our predicted outcomes – i.e. our hypothesis' results – and the actual values of <span class="cp-katex inline">y_i</span>, all divided by <span class="cp-katex inline">2m</span>, where <span class="cp-katex inline">m</span> is the number of points in our dataset.
 
 <figure class="katex-figure">
-  <figcaption>
-    Let's start by defining our <strong>hypothesis</strong>, <div class="cp-katex inline">h_\theta(x_i)</div>, which takes the familiar shape of <div class="cp-katex inline">y = t_0 + t_{1}x</div>.
-  </figcaption>
-   <div class="cp-katext">
-    h_\theta(x_i) = \theta_0 + \theta_1 x_i
-  </div>
-</figure>
-
-<figure class="katex-figure">
-  <figcaption>
-    And our <strong>cost function</strong>, <div class="cp-katex inline">J(\theta_0, \theta_1)</div>, which is the sum of differences between our predicted outcomes – i.e. our hypothesis' results – and the actual values of <div class="cp-katex inline">y_i</div>, all divided by <div class="cp-katex inline">2m</div>, where <div class="cp-katex inline">m</div> is the number of points in our data set.
-  </figcaption>
   <div class="cp-katex">
-    J(\theta_0, \theta_1) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x_i)-y_i)
+    J(\theta) = \frac{1}{2m} \sum_{i=1}^m{(h_\theta(x_i)-y_i)^2}
   </div>
 </figure>
 
+In order to measure the error of each <a target="_blank" href="https://www.youtube.com/watch?v=SbfRDBmyAMI">use the chain rule to calculate partial derivatives</a> for <div class="cp-katex inline">\theta_0</div> and <div class="cp-katex inline">\theta_1</div>.
+
 <figure class="katex-figure">
-  <figcaption>
-    In order to measure the error of each <a target="_blank" href="https://www.youtube.com/watch?v=SbfRDBmyAMI">use the chain rule to calculate partial derivatives</a> for <div class="cp-katex inline">\theta_0</div> and <div class="cp-katex inline">\theta_1</div>.
-  </figcaption>
   <div class="cp-katex">
     \frac{\partial}{\partial\theta_0}h_\theta(x_i)=1, \ \frac{\partial}{\partial\theta_1}h_\theta(x_i) = x_i
   </div>
@@ -93,35 +116,12 @@ I won't try to explain the math used to simplify  <a target="_blank" href="https
   </div>
 </figure>
 
-<figure class="katex-figure">
+<figure>
   <div class="cp-katex">
-  ...
+    <div class="chart" id="simple-gradient-descent-chart"></div>
   </div>
 </figure>
 
-<figure class="katex-figure">
-  <div class="cp-katex">
-...
-  </div>
-</figure>
-
-<figure class="katex-figure">
-  <div class="cp-katex">
-...
-  </div>
-</figure>
-
-<figure class="katex-figure">
-  <div class="cp-katex">
-...
-  </div>
-</figure>
-
-<figure class="katex-figure">
-  <div class="cp-katex">
-...
-  </div>
-</figure>
 
 <figure>
   <div class="chart-wrapper">
@@ -169,7 +169,7 @@ In this post, we applied __mini-batch gradient descent__, which means we
     };
 
     var lineOfBestFitRegressionTrace = {
-      name: 'Prediction Formula: y = 3.24 + 1.68x',
+      name: 'Line of Best Fit: y = 3.24 + 1.64x',
       mode: 'lines',
       type: 'scatter',
       line: {
