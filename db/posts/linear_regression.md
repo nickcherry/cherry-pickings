@@ -10,7 +10,19 @@ published: true
 
 <script src="/vendor/plotly-1.27.0/plotly-basic.min.js"></script>
 
-Welcome to the second episode of <a href="/blog?tag=machine_learning">Machine Learning for Mere Mortals</a>! Previously, we talked about <a target="_blank" href="/blog/naive_bayes">Naive Bayes</a>, which we refer to as a __classification algorithm__; because it attempts to classify inputs into discrete categories. Today we're going implement a __regression algorithm__ (specifically, linear regression) to predict continuous numeric values.
+Welcome to the second episode of <a href="/blog?tag=machine_learning">Machine Learning for Mere Mortals</a>! Previously, we talked about <a target="_blank" href="/blog/naive_bayes">Naive Bayes</a>, which we refer to as a __classification algorithm__; because it attempts to classify inputs into discrete categories. Today we're going implement a __regression algorithm__ (specifically, linear regression) to estimate continuous numeric values. Regressions can be applied whenever one or more independent variables have a direct influence on the value of a dependent variable. It could be useful when trying to answer questions like:
+
+- How many apples will the public buy if the price is increased by 20&cent;?
+- How many potatoes can John expect to grow if his farm gets 20 inches of rain this year?
+- How much will an apartment cost, given its square footage, number of bathrooms, and distance from the nearest subway?
+- How long will our server take to migrate a collection of size _x_?
+- How many more spelling mistakes will I make after finishing this old-fashioned cocktail?
+
+<figure>
+  <div class="image-wrapper">
+    <img src="/images/posts/regression-coaster.webp" alt="Regression Coaster">
+  </div>
+</figure>
 
 You probably remember calculating the "line of best fit" back in high school. If we were given a set of data points – let's say:
 
@@ -45,18 +57,18 @@ You probably remember calculating the "line of best fit" back in high school. If
   </tbody>
 </table>
 
-We would use the formulae below to calculate a __y-intercept__, <span class="cp-katex inline">\theta_0</span>, and __slope__, <span class="cp-katex inline">\theta_1</span>, for a function that takes the shape <span class="cp-katex inline">y = \theta_0 + \theta_{1}x</span>. Then, for any value of <span class="cp-katex inline">x</span>, we could use our line of best fit to estimate the outcome variable, <span class="cp-katex inline">y</span>.
+We would use the formulae below to calculate a __y-intercept__, <span class="cp-katex inline">\theta_0</span>, and __slope__, <span class="cp-katex inline">\theta_1</span>, for a function that takes the shape <span class="cp-katex inline">y = \theta_0 + \theta_{1}x</span>. Then, for any value of <span class="cp-katex inline">x</span>, we could use our line of best fit to predict the outcome variable, <span class="cp-katex inline">y</span>.
 
 <figure class="katex-figure">
-  <figcaption>Given <span class="cp-katex inline">n</span> is the number of points in the dataset:</figcaption>
+  <figcaption>Given <span class="cp-katex inline">m</span> is the number of points in the dataset:</figcaption>
   <div class=cp-katex>
-    \theta_1 = \frac{n\sum{x_{i}y_i} - (\sum{x_i})(\sum{y_i})}{n\sum{x_{i}^2} - (\sum{x_i})^2}
+    \theta_1 = \frac{m\sum{x_{i}y_i} - (\sum{x_i})(\sum{y_i})}{m\sum{x_{i}^2} - (\sum{x_i})^2}
   </div>
 </figure>
 
 <figure class="katex-figure">
   <div class="cp-katex">
-    \theta_0 = \frac{\sum{y_i} - \theta_1\sum{x_i}}{n}
+    \theta_0 = \frac{\sum{y_i} - \theta_1\sum{x_i}}{m}
   </div>
 </figure>
 
@@ -68,7 +80,7 @@ When we plug in the values from our tiny sample dataset, we end up with a regres
   </div>
 </figure>
 
-It's important to note that (without any transformations) the line of best fit only works when the data actually conforms to a linear trend. Assuming the requirement is met, we can get a lot of mileage from analytic approaches like this one.
+It's important to note that (without any transformations) the line of best fit only works when the data actually conforms to a linear trend. But assuming the requirement is met, we can get a lot of mileage from analytic approaches like this one.
 
 Now, you might be wondering how machine learning ties into all of this, considering that we could calculate a regression line with a well-sharpened pencil. The short answer is that <a target="_blank" href="https://en.wikipedia.org/wiki/Closed-form_expression">closed-form</a> expressions <a target="_blank" href="https://stats.stackexchange.com/a/23132">don't always perform well when dealing with large, multivariate datasets</a>; we'd prefer a solution that's easier to parallelize and less vulnerable to memory limitations. Furthermore, real-world problems often can't be solved by closed-form solutions, and it would be nice to have a more generic approach that can be applied to a wider range of scenarios.
 
@@ -76,29 +88,35 @@ This is where we introduce one of the fundamental concepts of machine learning: 
 
 > …a really beautiful algorithm that helps find the optimal solution to a function, and forms the foundations of how we train intelligent systems today. It’s based off a very simple idea — rather than figuring out the best solution to a problem immediately, it guesses an initial solution and steps it in a direction that’s closer to a better solution. The algorithm is to repeat this procedure, until the solution is good enough.
 
+Unlike analytic solutions, which try to solve the problem "instantly", gradient descent takes an iterative approach. It begins with some arbitrary initial values, and then gradually moves toward the "correct" – or more accurately, "least wrong" – answer.
 
-
-The driving force behind gradient descent is the __cost function__. The cost function is a
-
-Today we're going to be using <a target="_blank" href="https://en.wikipedia.org/wiki/Mean_squared_error">mean squared error</a>
-
-Let's start by defining a __hypothesis__, <span class="cp-katex inline">h_\theta(x_i)</span>, which is the function that _predicts_ the value of <span class="cp-katex inline">y</span>. In this example, we're assuming that the data adheres to a linear pattern. Our hypothesis should look familiar; it's simply the function of a straight line:
+The first step of the gradient descent process is to define a __hypothesis__, which is <a target="_blank" href="https://www.quora.com/What-is-hypothesis-in-machine-learning/answer/Sebastian-Raschka-1?srid=qKg">a function that we believe (or hope) is similar to the true / target function we want to model.</a> In today's post, we're assuming the data is linear in nature, so our hypothesis, <span class="cp-katex inline">h_\theta(x_i)</span>, is just the formula for a straight line:
 
 <figure class="katex-figure">
-   <div class="cp-katex">
+  <figcaption>Hypothesis</figcaption>
+  <div class="cp-katex">
     h_\theta(x_i) = \theta_0 + \theta_{1}x_i
   </div>
 </figure>
 
-Next, we'll need to come up with a __cost function__, <span class="cp-katex inline">J(\theta_0, \theta_1)</span>, which is . In this case, we'll
+Next we'll talk about the driving force behind gradient descent. The __cost function__ (also known as the __error function__) is a measure of how far off our hypothesis' predictions are from the actual values in our data set. It answers the question, "How wrong are we?", and we want to __minimize__ the output of this function; because the lower its result, the closer our algorithm is to an acceptable solution.
 
- is the sum of differences between our predicted outcomes – i.e. our hypothesis' results – and the actual values of <span class="cp-katex inline">y_i</span>, all divided by <span class="cp-katex inline">2m</span>, where <span class="cp-katex inline">m</span> is the number of points in our dataset.
+Our cost function, <span class="cp-katex inline">J(\theta)</span>, will be an implementation of <a target="_blank" href="https://en.wikipedia.org/wiki/Mean_squared_error">mean squared error</a>. More concretely, it will be the squared sum of differences between our predicted outcomes (i.e. our hypothesis' results) and the actual values of <span class="cp-katex inline">y_i</span> for each point, <span class="cp-katex inline">i</span>, in our dataset. Then, we'll divide the resulting sum by <span class="cp-katex inline">2m</span>, where <span class="cp-katex inline">m</span> is the total number of points in the training dataset.
 
 <figure class="katex-figure">
+  <figcaption>Cost Function</figcaption>
   <div class="cp-katex">
     J(\theta) = \frac{1}{2m} \sum_{i=1}^m{(h_\theta(x_i)-y_i)^2}
   </div>
 </figure>
+
+At this point you might be thinking:
+
+> So, we have our hypothesis, some arbitrary starting values for <span class="cp-katex inline">\theta_0</span> and <span class="cp-katex inline">\theta_1</span>, and a cost function, we can get a vague sense for how far off our initial values are; but unless the error is miraculously 0,
+
+How to decide which direction to move?
+
+<!--
 
 In order to measure the error of each <a target="_blank" href="https://www.youtube.com/watch?v=SbfRDBmyAMI">use the chain rule to calculate partial derivatives</a> for <div class="cp-katex inline">\theta_0</div> and <div class="cp-katex inline">\theta_1</div>.
 
@@ -130,7 +148,7 @@ I won't try to explain the math used to simplify  <a target="_blank" href="https
 </figure>
 
 In this post, we applied __mini-batch gradient descent__, which means we
-<a target="_blank" href="http://sebastianruder.com/optimizing-gradient-descent/index.html#batchgradientdescent">Sebastian Ruder</a> does an incredible job of
+<a target="_blank" href="http://sebastianruder.com/optimizing-gradient-descent/index.html#batchgradientdescent">Sebastian Ruder</a> does an incredible job of -->
 
 <style>
   #simple-gradient-descent-chart .legend { transform:  translate(75px, 9px) !important; }

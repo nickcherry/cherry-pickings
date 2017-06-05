@@ -146,6 +146,16 @@
         width: 100%;
       }
     }
+    &.katex-figure {
+      figcaption {
+        font-weight: $light-font-weight;
+      }
+      .cp-katex .katex {
+        background-color: $mine-shaft;
+        overflow: visible;
+        position: relative;
+      }
+    }
     img:not(.emoji) {
       border-radius: 4px;
       box-shadow: 0 0 6px 0 rgba(black, .15);
@@ -155,11 +165,6 @@
     }
     twitterwidget {
       margin: auto;
-    }
-    > .cp-katex .katex {
-      background-color: $mine-shaft;
-      overflow: visible;
-      position: relative;
     }
   }
   .tiny-parenthetical {
