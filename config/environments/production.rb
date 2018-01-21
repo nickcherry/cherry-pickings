@@ -24,7 +24,7 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   # config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
   # https://ricostacruz.com/til/rails-and-cloudfront
-  config.serve_static_assets = true
+  config.serve_static_files = true
   config.static_cache_control = 'public, max-age=31536000'
 
   # Compress JavaScripts and CSS.
